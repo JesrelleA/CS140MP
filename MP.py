@@ -34,9 +34,6 @@ for luto in task:
 
 html += "</table></html>"
 
-
-#print(html)
-
 f = open("output.html", "w+")
 f.write(html)
 f.close()
