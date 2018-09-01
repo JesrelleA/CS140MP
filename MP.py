@@ -1,8 +1,27 @@
-filename = "recipe.txt"
+filename = "tasklist.txt"
 file = open(filename, "r")
-for line in file:
-   print(line)
 
+recipe       = {}
+recipe_count = {}
+
+for line in file:
+    task_i       = line.split()[0]
+    task_sched_i = int(line.split()[1])
+
+    if task_i not in recipe_count:	# for 1st encounter with task
+        recipe_count.update({task_i : 1})
+        recipe.update({ task_sched_i : str(task_i+"1")})
+    else:							# for all subsequent encounters
+        recipe_count.update({task_i : recipe_count[task_i]+1})
+        task_v = task_i + str(recipe_count[task_i])
+        recipe.update({ task_sched_i : task_v})
+
+print("count was:", recipe_count)
+print("task list is", recipe)
+    #print(recipe_count)
+    
+    # print(recipe, time)
+    #print(line)
 task = {"adob", "sinigang", "tapsilog"} 
 
 #html = """<html><table border="1">
