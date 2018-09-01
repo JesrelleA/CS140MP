@@ -32,7 +32,7 @@ print("count was:", tasks_count)
 print("task list is", tasks)
 
 headers = ["Time", "Cook", "Ready", "Assistants", "Remarks"]
-clock = 1;
+clock = 0;
 
 # formats header
 html = "<html><table border=\"1\">"     
@@ -42,30 +42,34 @@ html += "</tr>"
 
 prio_queue = "none"
 
-done = False;
-#while not done: 
-for luto in tasks:
+default = "none"
+done_i = None
+done_all = False;
+# while not done: 
+
+while clock < max(tasks, key=int):
+    cooking = ""
+
     for state in headers:
         if state == "Time":
             html += "<td>{}</td>".format( str(clock) )
-            clock+=1
+            clock += 1
         elif state == "Cook":
-            task_filename = ''.join(i for i in tasks[luto] if not i.isdigit()) + ".txt"
-            task_file = open(task_filename, "r")
+            if clock in tasks:
+                recipe = []
 
-            cooking = task_filename
-
-            recipe = []
-            i = 0
+                cooking += "time to cook " + tasks[clock]
+                task_filename = ''.join(i for i in tasks[clock] if not i.isdigit()) + ".txt"
+                task_file = open(task_filename, "r")
         
-            for line in task_file:
-                step       = line.split()[0]      # gets step at a time
-                step_time  = int(line.split()[1]) # gets duration of step
-                step_node = (step, step_time)
-                recipe.append(step_node)
+                for line in task_file:
+                    step       = line.split()[0]      # gets step at a time
+                    step_time  = int(line.split()[1]) # gets duration of step
+                    step_node = (step, step_time)
+                    recipe.append(step_node)
      
 
-            print(tasks[luto], recipe)
+#            print(tasks[clock], recipe)
 
             """
             if ()
@@ -75,12 +79,13 @@ for luto in tasks:
             """
             html += "<td>{}</td>".format( cooking )
         else:
-            html += "<td>{}</td>".format("")
+            html += "<td>{}</td>".format(default)
         #"<td>{}</td>".format('<br>'.join("laman"))
     html += "</tr>"
 
     if clock == 16:
         done = True
+
 html += "</table></html>"
 
 output = open("output.html", "w+")
