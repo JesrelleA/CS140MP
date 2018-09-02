@@ -32,7 +32,7 @@ print("count was:", tasks_count)
 print("task list is", tasks)
 
 headers = ["Time", "Cook", "Ready", "Assistants", "Remarks"]
-clock = 0;
+clock = 1;
 
 # formats header
 html = "<html><table border=\"1\">"     
@@ -47,27 +47,28 @@ done_i = None
 done_all = False;
 # while not done: 
 
-while clock < max(tasks, key=int):
+while clock <= max(tasks, key=int):
     cooking = ""
+    if clock in tasks:
+        recipe = []
+
+        cooking += "time to cook " + tasks[clock]
+        task_filename = ''.join(i for i in tasks[clock] if not i.isdigit()) + ".txt"
+        task_file = open(task_filename, "r")   
+
+        for line in task_file:
+            step       = line.split()[0]      # gets step at a time
+            step_time  = int(line.split()[1]) # gets duration of step
+            step_node = (step, step_time)
+            recipe.append(step_node)
+     
+
 
     for state in headers:
         if state == "Time":
             html += "<td>{}</td>".format( str(clock) )
             clock += 1
         elif state == "Cook":
-            if clock in tasks:
-                recipe = []
-
-                cooking += "time to cook " + tasks[clock]
-                task_filename = ''.join(i for i in tasks[clock] if not i.isdigit()) + ".txt"
-                task_file = open(task_filename, "r")
-        
-                for line in task_file:
-                    step       = line.split()[0]      # gets step at a time
-                    step_time  = int(line.split()[1]) # gets duration of step
-                    step_node = (step, step_time)
-                    recipe.append(step_node)
-     
 
 #            print(tasks[clock], recipe)
 
