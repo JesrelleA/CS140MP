@@ -4,6 +4,17 @@ file = open(filename, "r")
 tasks          = {}
 tasks_count       = {}
 
+class Recipe:
+    to_do = []
+    def __init__(self, recipe_list=None):
+        self.to_do = recipe_list
+
+    def add_to_recipe(step, step_time):
+        to_do.append(step, step_time)
+
+
+
+
 for line in file:
     task_i       = line.split()[0]
     task_sched_i = int(line.split()[1])
@@ -23,25 +34,64 @@ print("task list is", tasks)
 headers = ["Time", "Cook", "Ready", "Assistants", "Remarks"]
 clock = 1;
 
-html = "<html><table border=\"1\">"     # formats header
+# formats header
+html = "<html><table border=\"1\">"     
 for state in headers:
     html += "<td>{}</td>".format(state)
 html += "</tr>"
+
 prio_queue = "none"
-for luto in tasks:
-    #html += "<tr><td>{}</td>".format(task)
+
+default = "none"
+done_i = None
+done_all = False;
+# while not done: 
+
+while clock <= max(tasks, key=int):
+    cooking = ""
+    ready = ""
+    assistants = "" #background tasks
+    remarks = ""
+
+    # chceks arrival times of tasks and fetches recipe
+    if clock in tasks: 
+        recipe = []
+        remarks = tasks[clock] + " arrives"
+
+
+        task_filename = ''.join(i for i in tasks[clock] if not i.isdigit()) + ".txt"
+        task_file = open(task_filename, "r")   
+
+        line_num = 0
+        for line in task_file:
+            recipe.append([])
+            
+            step       = line.split()[0]      # gets step at a time
+            step_time  = int(line.split()[1]) # gets duration of step
+            recipe[line_num].append(step)
+            recipe[line_num].append(step_time)
+
+            line_num += 1
+
+        print(recipe)
+
+        if recipe: # recipe is not empty
+            if cooking == "":
+                
+                cooking = str(recipe[0][0]) +"="+ str(recipe[0][1]) 
+                recipe[0][1]=recipe[0][1]-1
+                #cooking = ' '.join(map(str, recipe))
+            else:
+                ready = "smth"
+
+
     for state in headers:
         if state == "Time":
             html += "<td>{}</td>".format( str(clock) )
-            clock+=1
+            clock += 1
         elif state == "Cook":
-            task_filename = ''.join(i for i in tasks[luto] if not i.isdigit()) + ".txt"
-            task_file = open(task_filename, "r")
 
-            cooking = task_filename
-
-            for line in task_file:
-            	cooking += "\n " + line
+#            print(tasks[clock], recipe)
 
             """
             if ()
@@ -50,10 +100,21 @@ for luto in tasks:
                 html += "<td>{}</td>".format( cooking )
             """
             html += "<td>{}</td>".format( cooking )
+        elif state == "Ready":
+            html += "<td>{}</td>".format( ready )
+        elif state == "Assistants":
+            html += "<td>{}</td>".format( assistants )
+
+        elif state == "Remarks":
+            html += "<td>{}</td>".format( remarks )
         else:
-            html += "<td>{}</td>".format("")
+            html += "<td>{}</td>".format( default )
         #"<td>{}</td>".format('<br>'.join("laman"))
     html += "</tr>"
+
+    if clock == 16:
+        done = True
+
 html += "</table></html>"
 
 output = open("output.html", "w+")

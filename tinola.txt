@@ -1,5 +1,5 @@
-cook 1
-mix 2
-cook 3
-sauce 4
 cook 5
+mix 4
+cook 3
+sauce 2
+cook 1
