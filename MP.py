@@ -1,21 +1,10 @@
-from queue import *
+import recipe_methods as rm
 
 filename = "tasklist.txt"
 file = open(filename, "r")
 
 tasks          = {}
 tasks_count       = {}
-
-class Recipe:
-    to_do = []
-    def __init__(self, recipe_list=None):
-        self.to_do = recipe_list
-
-    def add_to_recipe(step, step_time):
-        to_do.append(step, step_time)
-
-
-
 
 for line in file:
     task_i       = line.split()[0]
@@ -28,12 +17,6 @@ for line in file:
         tasks_count.update({task_i : tasks_count[task_i]+1})
         task_v = task_i + str(tasks_count[task_i])
         tasks.update({ task_sched_i : task_v})
-
-"""
-print("count was:", tasks_count)
-print("task list is", tasks)
-
-"""
 
 headers = ["Time", "Cook", "Ready", "Assistants", "Remarks"]
 clock = 1;
@@ -51,65 +34,52 @@ done_all = False;
 head      = 0
 step_index      = 0
 step_time_index = 1
-# while not done: 
+
 
 cooking    = ""
 ready      = ""
 assistants = "" #background tasks
-to_cook     = {}
+to_cook    = {}
 queue      = []
 
+# while not done: 
+
+recipe_lineup = rm.Recipe_lineup()
 
 while clock <= max(tasks, key=int):
     remarks    = ""
-    recipe = [] # needs to be cleared every clock; but needs to be accessed beyond fetching function
+    recipe = rm.Recipe() # needs to be cleared every clock; but needs to be accessed beyond fetching function
 
     # chceks arrival times of tasks and fetches recipe
     if clock in tasks: 
         remarks = tasks[clock] + " arrives"
-        queue.append(tasks[clock])
-
 
         task_filename = ''.join(i for i in tasks[clock] if not i.isdigit()) + ".txt"
         task_file = open(task_filename, "r")   
 
         line_num = 0
         for line in task_file:
-            recipe.append([])
-            
             step       =     line.split()[step_index]      # gets step at a time
             step_time  = int(line.split()[step_time_index]) # gets duration of step
-            recipe[line_num].append(step)
-            recipe[line_num].append(step_time)
+            recipe.add_step(step, step_time)
 
             line_num += 1
-          
-        to_cook[tasks[clock]] = recipe
-        #print(recipe)
-        #print(to_cook)
 
-        # to_cook.update({tasks[clock]: recipe})
+        recipe_lineup.add_recipe(recipe)
+        print(tasks[clock], recipe_lineup)
 
         if recipe: # recipe is not empty
             if cooking == "":
-                cooking =  '{}({}={})'.format(tasks[clock], recipe[head][step_index], recipe[head][step_time_index])
-                recipe[head][step_time_index] = recipe[head][step_time_index] - 1
+                cooking =  '{}({}={})'.format(tasks[clock], recipe.get_next_step()[0], recipe.get_next_step()[1])
+                recipe.get_next_step()[1] = recipe.get_next_step()[1] - 1
                 #cooking = ' '.join(map(str, recipe))
             elif not cooking == "":
-                cooking =  '{}({}={})'.format(tasks[clock], recipe[head][step_index], recipe[head][step_time_index])
-                recipe[head][step_time_index] = recipe[head][step_time_index] - 1
-
-               #remarks += " something is already cooking"
+                ready =  '{}({}={})'.format(tasks[clock], recipe.get_next_step()[0], recipe.get_next_step()[1])
+                #recipe.get_next_step()[1] = recipe.get_next_step()[1] - 1
+                remarks += " something is already cooking" #atm it relaces what was already cooking
             else:
-                ready = cooking =  '{}({}={})'.format(tasks[clock], recipe[head][step_index], recipe[head][step_time_index])
-
-
-                """
-                if recipe[head][step_time_index] == 0:
-                cooking = ""
-                """
-
-
+                ready = cooking =  '{}({}={})'.format(tasks[clock], recipe.get_next_step()[0], recipe.get_next_step()[1])
+    # ends fetching of next recipe
 
 
 
