@@ -1,4 +1,4 @@
-cook 1
+cook 2
 mix 2
 cook 3
 sauce 4

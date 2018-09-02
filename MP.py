@@ -49,24 +49,40 @@ done_all = False;
 
 while clock <= max(tasks, key=int):
     cooking = ""
+    ready = ""
+    assistants = "" #background tasks
     remarks = ""
-    if clock in tasks:
+
+    # chceks arrival times of tasks and fetches recipe
+    if clock in tasks: 
         recipe = []
-
-        cooking += "time to cook " + tasks[clock]
-
         remarks = tasks[clock] + " arrives"
 
 
         task_filename = ''.join(i for i in tasks[clock] if not i.isdigit()) + ".txt"
         task_file = open(task_filename, "r")   
 
+        line_num = 0
         for line in task_file:
+            recipe.append([])
+            
             step       = line.split()[0]      # gets step at a time
             step_time  = int(line.split()[1]) # gets duration of step
-            step_node = (step, step_time)
-            recipe.append(step_node)
-     
+            recipe[line_num].append(step)
+            recipe[line_num].append(step_time)
+
+            line_num += 1
+
+        print(recipe)
+
+        if recipe: # recipe is not empty
+            if cooking == "":
+                
+                cooking = str(recipe[0][0]) +"="+ str(recipe[0][1]) 
+                recipe[0][1]=recipe[0][1]-1
+                #cooking = ' '.join(map(str, recipe))
+            else:
+                ready = "smth"
 
 
     for state in headers:
@@ -84,6 +100,11 @@ while clock <= max(tasks, key=int):
                 html += "<td>{}</td>".format( cooking )
             """
             html += "<td>{}</td>".format( cooking )
+        elif state == "Ready":
+            html += "<td>{}</td>".format( ready )
+        elif state == "Assistants":
+            html += "<td>{}</td>".format( assistants )
+
         elif state == "Remarks":
             html += "<td>{}</td>".format( remarks )
         else:
