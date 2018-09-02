@@ -49,10 +49,15 @@ done_all = False;
 
 while clock <= max(tasks, key=int):
     cooking = ""
+    remarks = ""
     if clock in tasks:
         recipe = []
 
         cooking += "time to cook " + tasks[clock]
+
+        remarks = tasks[clock] + " arrives"
+
+
         task_filename = ''.join(i for i in tasks[clock] if not i.isdigit()) + ".txt"
         task_file = open(task_filename, "r")   
 
@@ -79,8 +84,10 @@ while clock <= max(tasks, key=int):
                 html += "<td>{}</td>".format( cooking )
             """
             html += "<td>{}</td>".format( cooking )
+        elif state == "Remarks":
+            html += "<td>{}</td>".format( remarks )
         else:
-            html += "<td>{}</td>".format(default)
+            html += "<td>{}</td>".format( default )
         #"<td>{}</td>".format('<br>'.join("laman"))
     html += "</tr>"
 
