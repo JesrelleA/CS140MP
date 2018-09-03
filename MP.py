@@ -1,5 +1,3 @@
-import recipe_methods as rm
-
 filename = "tasklist.txt"
 file = open(filename, "r")
 
