@@ -44,13 +44,19 @@ queue      = []
 
 # while not done: 
 
-recipe_lineup = rm.Recipe_lineup()
+recipe_lineup = []
+
 
 while clock <= max(tasks, key=int):
     remarks    = ""
-    recipe = rm.Recipe() # needs to be cleared every clock; but needs to be accessed beyond fetching function
-
+    recipe = []
+     # needs to be cleared every clock; but needs to be accessed beyond fetching function
+    """
     # chceks arrival times of tasks and fetches recipe
+    if not cooking == "":
+        remarks = "something is already cooking so we " + recipe.get_next_step()[0]
+        #recipe.get_next_step()[1] = recipe.get_next_step()[1] - 1
+"""
     if clock in tasks: 
         remarks = tasks[clock] + " arrives"
 
@@ -61,26 +67,29 @@ while clock <= max(tasks, key=int):
         for line in task_file:
             step       =     line.split()[step_index]      # gets step at a time
             step_time  = int(line.split()[step_time_index]) # gets duration of step
-            recipe.add_step(step, step_time)
+            step_node = [step, step_time]
+            recipe.append(step_node)
 
             line_num += 1
 
-        recipe_lineup.add_recipe(recipe)
+        recipe_lineup.append(recipe)
+        print(recipe)
         print(tasks[clock], recipe_lineup)
 
         if recipe: # recipe is not empty
             if cooking == "":
-                cooking =  '{}({}={})'.format(tasks[clock], recipe.get_next_step()[0], recipe.get_next_step()[1])
-                recipe.get_next_step()[1] = recipe.get_next_step()[1] - 1
+                cooking =  '{}({}={})'.format(tasks[clock], recipe[0][0], recipe[0][1])
+                recipe[0][1] = recipe[0][1] - 1
                 #cooking = ' '.join(map(str, recipe))
             elif not cooking == "":
-                ready =  '{}({}={})'.format(tasks[clock], recipe.get_next_step()[0], recipe.get_next_step()[1])
+                ready =  '{}({}={})'.format(tasks[clock], recipe[0][0], recipe[0][1])
                 #recipe.get_next_step()[1] = recipe.get_next_step()[1] - 1
                 remarks += " something is already cooking" #atm it relaces what was already cooking
             else:
-                ready = cooking =  '{}({}={})'.format(tasks[clock], recipe.get_next_step()[0], recipe.get_next_step()[1])
-    # ends fetching of next recipe
+                ready = cooking =  '{}({}={})'.format(tasks[clock], recipe[0][0], recipe[0][1])
+    del recipe
 
+    # ends fetching of next recipe
 
 
     for state in headers:
@@ -98,6 +107,7 @@ while clock <= max(tasks, key=int):
     if clock == 16:
         done = True
 
+print(tasks, recipe_lineup)
 html += "</table></html>"
 
 style = """

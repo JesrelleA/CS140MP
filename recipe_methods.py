@@ -9,10 +9,10 @@ class Recipe:
         step_node.append(step)
         step_node.append(time)
         #Checking to avoid duplicate entry (not mandatory)
-        if step_node not in self.queue:
-            self.queue.append(step_node)
-            return True
-        return False
+        
+        self.queue.append(step_node)
+        return True
+
 
     #Removing the last element from the queue
     def complete_step(self):
@@ -22,7 +22,7 @@ class Recipe:
 
     #Getting the size of the queue
     def count_steps(self):
-            return len(self.queue)
+        return len(self.queue)
 
     #printing the elements of the queue
     def print_recipe(self):
@@ -30,6 +30,11 @@ class Recipe:
 
     def get_next_step(self):
         return self.queue[0]
+
+
+    def __del__(self):
+        return True
+        print ("deleted")
 
     def __repr__(self):
         return str(self.queue)
@@ -47,6 +52,9 @@ class Recipe_lineup:
 
     def print_recipe_list(self):
         return self
+
+    def get_next_step(self):
+        return self.queue[0].get_next_step()
 
     def __repr__(self):
         return str(self.queue)
