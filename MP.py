@@ -45,7 +45,10 @@ queue      = []
 recipe_lineup = []
 
 
-while clock <= max(tasks, key=int):
+while clock <= max(tasks, key=int):  
+# will fix condition
+# atm stops when the last task arrives
+# should stop when last task finishes
     remarks    = ""
     recipe = []
      # needs to be cleared every clock; but needs to be accessed beyond fetching function
@@ -102,7 +105,7 @@ while clock <= max(tasks, key=int):
         #"<td>{}</td>".format('<br>'.join("laman"))
     html += "</tr>"
 
-    if clock == 16:
+    if clock == 16: # this is just for tentative debugging
         done = True
 
 print(tasks, recipe_lineup)
