@@ -45,7 +45,9 @@ queue      = []
 recipe_lineup = []
 
 
-while clock <= max(tasks, key=int):  
+#while clock <= max(tasks, key=int):  
+
+while clock < 50:
 # will fix condition
 # atm stops when the last task arrives
 # should stop when last task finishes
