@@ -78,8 +78,8 @@ while clock < 50:
         recipe_lineup.append(recipe)
         print(recipe)
         print(tasks[clock], recipe_lineup)
-
         if recipe: # recipe is not empty
+        
             if cooking == "":
                 cooking =  '{}({}={})'.format(tasks[clock], recipe[0][0], recipe[0][1])
                 recipe[0][1] = recipe[0][1] - 1
@@ -90,7 +90,7 @@ while clock < 50:
                 remarks += " something is already cooking" #atm it relaces what was already cooking
             else:
                 ready = cooking =  '{}({}={})'.format(tasks[clock], recipe[0][0], recipe[0][1])
-    del recipe
+
 
     # ends fetching of next recipe
 
@@ -113,8 +113,36 @@ while clock < 50:
 print(tasks, recipe_lineup)
 html += "</table></html>"
 
-style = """
-<style>
+style = """<style>
+th {
+    font-weight: bold;
+    text-align: -internal-center;
+}
+user agent stylesheet
+td, th {
+    display: table-cell;
+    vertical-align: inherit;
+}
+user agent stylesheet
+table {
+    white-space: normal;
+    line-height: normal;
+    font-weight: normal;
+    font-size: medium;
+    font-style: normal;
+    color: -internal-quirk-inherit;
+    text-align: start;
+    font-variant: normal;
+}
+user agent stylesheet
+table {
+    display: table;
+    border-collapse: separate;
+    border-spacing: 2px;
+    border-color: grey;
+}
+
+
 table, th, td {
     border: 1px solid black;
     border-collapse: collapse;
