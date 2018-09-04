@@ -38,7 +38,6 @@ cooking    = ""
 ready      = ""
 assistants = "" #background tasks
 to_cook    = {}
-queue      = []
 
 # while not done: 
 
@@ -78,8 +77,8 @@ while clock < 50:
         recipe_lineup.append(recipe)
         print(recipe)
         print(tasks[clock], recipe_lineup)
-        if recipe: # recipe is not empty
         
+        if recipe: # recipe is not empty
             if cooking == "":
                 cooking =  '{}({}={})'.format(tasks[clock], recipe[0][0], recipe[0][1])
                 recipe[0][1] = recipe[0][1] - 1
@@ -90,6 +89,12 @@ while clock < 50:
                 remarks += " something is already cooking" #atm it relaces what was already cooking
             else:
                 ready = cooking =  '{}({}={})'.format(tasks[clock], recipe[0][0], recipe[0][1])
+
+
+        if cooking:
+            cooking =  '{}({}={})'.format(tasks[clock], recipe[0][0], recipe[0][1])
+            recipe[0][1] = recipe[0][1] - 1
+
 
 
     # ends fetching of next recipe
