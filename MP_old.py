@@ -16,6 +16,7 @@ for line in file:
         task_v = task_i + str(tasks_count[task_i])
         tasks.update({ task_sched_i : task_v})
 
+print(tasks)
 headers = ["Time", "Cook", "Ready", "Assistants", "Remarks"]
 clock = 1;
 
@@ -75,8 +76,8 @@ while clock < 50:
             line_num += 1
 
         recipe_lineup.append(recipe)
-        print(recipe)
-        print(tasks[clock], recipe_lineup)
+        #print(recipe)
+        #print(tasks[clock], recipe_lineup)
         
         if recipe: # recipe is not empty
             if cooking == "":
@@ -115,7 +116,7 @@ while clock < 50:
     if clock == 16: # this is just for tentative debugging
         done = True
 
-print(tasks, recipe_lineup)
+#print(tasks, recipe_lineup)
 html += "</table></html>"
 
 style = """<style>

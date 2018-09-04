@@ -1,4 +1,4 @@
-filename = "tasklist.txt"
+filename = "Tasklist.txt"
 file = open(filename, "r")
 
 tasks          = {}
@@ -17,34 +17,10 @@ for line in file:
         tasks.update({ task_sched_i : task_v})
 
 headers = ["Time", "Cook", "Ready", "Assistants", "Remarks"]
-clock = 1;
+clock = 1
 
-# formats header
-html = "<html><table border=\"1\">"     
-for state in headers:
-    html += "<td>{}</td>".format(state)
-html += "</tr>"
+print (tasks)
 
-default = "none"
-done_i = None
-done_all = False;
-
-head      = 0
-step_index      = 0
-step_time_index = 1
-
-
-cooking    = ""
-ready      = ""
-assistants = "" #background tasks
-to_cook    = {}
-
-# while not done: 
-
-recipe_lineup = []
-
-
-#while clock <= max(tasks, key=int):  
 
 while clock < 50:
 # will fix condition
@@ -75,8 +51,8 @@ while clock < 50:
             line_num += 1
 
         recipe_lineup.append(recipe)
-        print(recipe)
-        print(tasks[clock], recipe_lineup)
+        #print(recipe)
+        #print(tasks[clock], recipe_lineup)
         
         if recipe: # recipe is not empty
             if cooking == "":
@@ -115,48 +91,5 @@ while clock < 50:
     if clock == 16: # this is just for tentative debugging
         done = True
 
-print(tasks, recipe_lineup)
+#print(tasks, recipe_lineup)
 html += "</table></html>"
-
-style = """<style>
-th {
-    font-weight: bold;
-    text-align: -internal-center;
-}
-user agent stylesheet
-td, th {
-    display: table-cell;
-    vertical-align: inherit;
-}
-user agent stylesheet
-table {
-    white-space: normal;
-    line-height: normal;
-    font-weight: normal;
-    font-size: medium;
-    font-style: normal;
-    color: -internal-quirk-inherit;
-    text-align: start;
-    font-variant: normal;
-}
-user agent stylesheet
-table {
-    display: table;
-    border-collapse: separate;
-    border-spacing: 2px;
-    border-color: grey;
-}
-
-
-table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
-}
-</style>
-"""
-
-html += style
-
-output = open("output.html", "w+")
-output.write(html)
-output.close()
