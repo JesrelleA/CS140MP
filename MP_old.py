@@ -76,8 +76,8 @@ while clock < 50:
             line_num += 1
 
         recipe_lineup.append(recipe)
-        #print(recipe)
-        #print(tasks[clock], recipe_lineup)
+        print(recipe)
+        print(tasks[clock], recipe_lineup)
         
         if recipe: # recipe is not empty
             if cooking == "":
