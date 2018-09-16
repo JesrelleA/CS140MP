@@ -1,0 +1,944 @@
+cook
+5
+time =  1
+
+
+COOK COLUMN
+a (cook= 5 )
+
+
+READY COLUMN
+
+
+ASSISTANTS COLUMN
+
+
+REMARKS COLUMN
+a arrives
+-----------------
+cook
+4
+time =  2
+
+
+COOK COLUMN
+a (cook= 4 )
+
+
+READY COLUMN
+b ( cook = 10 )
+
+
+ASSISTANTS COLUMN
+
+
+REMARKS COLUMN
+b arrives
+-----------------
+cook
+3
+time =  3
+
+
+COOK COLUMN
+a (cook= 3 )
+
+
+READY COLUMN
+b ( cook = 10 )
+c ( cook = 15 )
+
+
+ASSISTANTS COLUMN
+
+
+REMARKS COLUMN
+c arrives
+-----------------
+cook
+2
+time =  4
+
+
+COOK COLUMN
+a (cook= 2 )
+
+
+READY COLUMN
+b ( cook = 10 )
+c ( cook = 15 )
+a ( cook = 5 )
+
+
+ASSISTANTS COLUMN
+
+
+REMARKS COLUMN
+a arrives
+-----------------
+cook
+1
+time =  5
+
+
+COOK COLUMN
+a (cook= 1 )
+
+
+READY COLUMN
+b ( cook = 10 )
+c ( cook = 15 )
+a ( cook = 5 )
+b ( cook = 10 )
+
+
+ASSISTANTS COLUMN
+
+
+REMARKS COLUMN
+b arrives
+-----------------
+cook
+0
+DONE COOKING
+DONE COOKING 2
+code was: assistants.append(cook[0])
+APPENDED SOMETHING TO COOKING
+the thing appended was <__main__.Step object at 0x103246518>
+Cook column is empty but 
+there's dish waiting in the ready column!
+time =  6
+
+
+COOK COLUMN
+b (cook= 10 )
+
+
+READY COLUMN
+c ( cook = 15 )
+a ( cook = 5 )
+b ( cook = 10 )
+
+
+ASSISTANTS COLUMN
+c ( cook = 15 )
+a ( cook = 5 )
+
+
+REMARKS COLUMN
+c arrives
+a [cook done]
+-----------------
+9
+time =  7
+
+
+COOK COLUMN
+b (cook= 9 )
+
+
+READY COLUMN
+c ( cook = 15 )
+a ( cook = 5 )
+b ( cook = 10 )
+
+
+ASSISTANTS COLUMN
+c ( cook = 15 )
+a ( cook = 5 )
+c ( cook = 15 )
+
+
+REMARKS COLUMN
+-----------------
+8
+time =  8
+
+
+COOK COLUMN
+b (cook= 8 )
+
+
+READY COLUMN
+c ( cook = 15 )
+a ( cook = 5 )
+b ( cook = 10 )
+
+
+ASSISTANTS COLUMN
+c ( cook = 15 )
+a ( cook = 5 )
+c ( cook = 15 )
+c ( cook = 15 )
+
+
+REMARKS COLUMN
+-----------------
+7
+time =  9
+
+
+COOK COLUMN
+b (cook= 7 )
+
+
+READY COLUMN
+c ( cook = 15 )
+a ( cook = 5 )
+b ( cook = 10 )
+
+
+ASSISTANTS COLUMN
+c ( cook = 15 )
+a ( cook = 5 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+
+
+REMARKS COLUMN
+-----------------
+6
+time =  10
+
+
+COOK COLUMN
+b (cook= 6 )
+
+
+READY COLUMN
+c ( cook = 15 )
+a ( cook = 5 )
+b ( cook = 10 )
+
+
+ASSISTANTS COLUMN
+c ( cook = 15 )
+a ( cook = 5 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+
+
+REMARKS COLUMN
+-----------------
+5
+time =  11
+
+
+COOK COLUMN
+b (cook= 5 )
+
+
+READY COLUMN
+c ( cook = 15 )
+a ( cook = 5 )
+b ( cook = 10 )
+
+
+ASSISTANTS COLUMN
+c ( cook = 15 )
+a ( cook = 5 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+
+
+REMARKS COLUMN
+-----------------
+4
+time =  12
+
+
+COOK COLUMN
+b (cook= 4 )
+
+
+READY COLUMN
+c ( cook = 15 )
+a ( cook = 5 )
+b ( cook = 10 )
+
+
+ASSISTANTS COLUMN
+c ( cook = 15 )
+a ( cook = 5 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+
+
+REMARKS COLUMN
+-----------------
+3
+time =  13
+
+
+COOK COLUMN
+b (cook= 3 )
+
+
+READY COLUMN
+c ( cook = 15 )
+a ( cook = 5 )
+b ( cook = 10 )
+
+
+ASSISTANTS COLUMN
+c ( cook = 15 )
+a ( cook = 5 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+
+
+REMARKS COLUMN
+-----------------
+2
+time =  14
+
+
+COOK COLUMN
+b (cook= 2 )
+
+
+READY COLUMN
+c ( cook = 15 )
+a ( cook = 5 )
+b ( cook = 10 )
+
+
+ASSISTANTS COLUMN
+c ( cook = 15 )
+a ( cook = 5 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+
+
+REMARKS COLUMN
+-----------------
+1
+time =  15
+
+
+COOK COLUMN
+b (cook= 1 )
+
+
+READY COLUMN
+c ( cook = 15 )
+a ( cook = 5 )
+b ( cook = 10 )
+
+
+ASSISTANTS COLUMN
+c ( cook = 15 )
+a ( cook = 5 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+
+
+REMARKS COLUMN
+-----------------
+0
+DONE COOKING
+DONE COOKING 2
+code was: assistants.append(cook[0])
+APPENDED SOMETHING TO COOKING
+the thing appended was <__main__.Step object at 0x1032467b8>
+Cook column is empty but 
+there's dish waiting in the ready column!
+time =  16
+
+
+COOK COLUMN
+c (cook= 15 )
+
+
+READY COLUMN
+a ( cook = 5 )
+b ( cook = 10 )
+
+
+ASSISTANTS COLUMN
+c ( cook = 15 )
+a ( cook = 5 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+b ( cook = 10 )
+
+
+REMARKS COLUMN
+b [cook done]
+-----------------
+14
+time =  17
+
+
+COOK COLUMN
+c (cook= 14 )
+
+
+READY COLUMN
+a ( cook = 5 )
+b ( cook = 10 )
+
+
+ASSISTANTS COLUMN
+c ( cook = 15 )
+a ( cook = 5 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+b ( cook = 10 )
+c ( cook = 15 )
+
+
+REMARKS COLUMN
+-----------------
+13
+time =  18
+
+
+COOK COLUMN
+c (cook= 13 )
+
+
+READY COLUMN
+a ( cook = 5 )
+b ( cook = 10 )
+
+
+ASSISTANTS COLUMN
+c ( cook = 15 )
+a ( cook = 5 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+b ( cook = 10 )
+c ( cook = 15 )
+c ( cook = 15 )
+
+
+REMARKS COLUMN
+-----------------
+12
+time =  19
+
+
+COOK COLUMN
+c (cook= 12 )
+
+
+READY COLUMN
+a ( cook = 5 )
+b ( cook = 10 )
+
+
+ASSISTANTS COLUMN
+c ( cook = 15 )
+a ( cook = 5 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+b ( cook = 10 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+
+
+REMARKS COLUMN
+-----------------
+11
+time =  20
+
+
+COOK COLUMN
+c (cook= 11 )
+
+
+READY COLUMN
+a ( cook = 5 )
+b ( cook = 10 )
+
+
+ASSISTANTS COLUMN
+c ( cook = 15 )
+a ( cook = 5 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+b ( cook = 10 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+
+
+REMARKS COLUMN
+-----------------
+10
+time =  21
+
+
+COOK COLUMN
+c (cook= 10 )
+
+
+READY COLUMN
+a ( cook = 5 )
+b ( cook = 10 )
+
+
+ASSISTANTS COLUMN
+c ( cook = 15 )
+a ( cook = 5 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+b ( cook = 10 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+
+
+REMARKS COLUMN
+-----------------
+9
+time =  22
+
+
+COOK COLUMN
+c (cook= 9 )
+
+
+READY COLUMN
+a ( cook = 5 )
+b ( cook = 10 )
+
+
+ASSISTANTS COLUMN
+c ( cook = 15 )
+a ( cook = 5 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+b ( cook = 10 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+
+
+REMARKS COLUMN
+-----------------
+8
+time =  23
+
+
+COOK COLUMN
+c (cook= 8 )
+
+
+READY COLUMN
+a ( cook = 5 )
+b ( cook = 10 )
+
+
+ASSISTANTS COLUMN
+c ( cook = 15 )
+a ( cook = 5 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+b ( cook = 10 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+
+
+REMARKS COLUMN
+-----------------
+7
+time =  24
+
+
+COOK COLUMN
+c (cook= 7 )
+
+
+READY COLUMN
+a ( cook = 5 )
+b ( cook = 10 )
+
+
+ASSISTANTS COLUMN
+c ( cook = 15 )
+a ( cook = 5 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+b ( cook = 10 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+
+
+REMARKS COLUMN
+-----------------
+6
+time =  25
+
+
+COOK COLUMN
+c (cook= 6 )
+
+
+READY COLUMN
+a ( cook = 5 )
+b ( cook = 10 )
+
+
+ASSISTANTS COLUMN
+c ( cook = 15 )
+a ( cook = 5 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+b ( cook = 10 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+
+
+REMARKS COLUMN
+-----------------
+5
+time =  26
+
+
+COOK COLUMN
+c (cook= 5 )
+
+
+READY COLUMN
+a ( cook = 5 )
+b ( cook = 10 )
+
+
+ASSISTANTS COLUMN
+c ( cook = 15 )
+a ( cook = 5 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+b ( cook = 10 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+
+
+REMARKS COLUMN
+-----------------
+4
+time =  27
+
+
+COOK COLUMN
+c (cook= 4 )
+
+
+READY COLUMN
+a ( cook = 5 )
+b ( cook = 10 )
+
+
+ASSISTANTS COLUMN
+c ( cook = 15 )
+a ( cook = 5 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+b ( cook = 10 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+
+
+REMARKS COLUMN
+-----------------
+3
+time =  28
+
+
+COOK COLUMN
+c (cook= 3 )
+
+
+READY COLUMN
+a ( cook = 5 )
+b ( cook = 10 )
+
+
+ASSISTANTS COLUMN
+c ( cook = 15 )
+a ( cook = 5 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+b ( cook = 10 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+
+
+REMARKS COLUMN
+-----------------
+2
+time =  29
+
+
+COOK COLUMN
+c (cook= 2 )
+
+
+READY COLUMN
+a ( cook = 5 )
+b ( cook = 10 )
+
+
+ASSISTANTS COLUMN
+c ( cook = 15 )
+a ( cook = 5 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+b ( cook = 10 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+
+
+REMARKS COLUMN
+-----------------
+1
+time =  30
+
+
+COOK COLUMN
+c (cook= 1 )
+
+
+READY COLUMN
+a ( cook = 5 )
+b ( cook = 10 )
+
+
+ASSISTANTS COLUMN
+c ( cook = 15 )
+a ( cook = 5 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+b ( cook = 10 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+c ( cook = 15 )
+
+
+REMARKS COLUMN
+-----------------
+YAAAAAAAAY

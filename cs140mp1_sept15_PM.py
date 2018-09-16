@@ -4,12 +4,9 @@
 
 
 class Step:
-    def __init__(self, step, time):
+    def _init_(self, step, time):
         self.step = step
         self.time = time
-
-    def __repr__(self):
-        return(str(self.step))
 
     def time_step_decrement(self):
         self.time = self.time - 1
@@ -18,7 +15,7 @@ class Step:
         return self.step
 
 class Recipe:
-    def __init__(self, name, time, priority, recipe):
+    def _init_(self, name, time, priority, recipe):
         self.name = name
         self.time = time
         self.priority = priority
@@ -129,9 +126,11 @@ for l in range(0, 30):
                         #print in Cook: {cook[0].name}(cook={cook[0].time_left_for_step})
                         cook[0].do_step()
                     else:
+                        
+                        print("code was: assistants.append(cook[0])") 
                         assistants.append(cook[0])
                         print("APPENDED SOMETHING TO COOKING") # ri added
-                        print("the thing appended was ", cook[0].recipe[0])
+                        print("the thing appended was", cook[0].recipe[0])
                         done_cooking = cook[0]
                     cook[0].recipe.pop(0) #delete the dish in 'cook' since its cooked hehe
                 cook.pop(0)
