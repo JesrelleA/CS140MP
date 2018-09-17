@@ -95,8 +95,9 @@ assistants = []
 
 # while not done: 
 
-recipe_lineup = []
- 
+
+
+
 
 while clock < 50:
 # will fix condition
@@ -124,26 +125,18 @@ while clock < 50:
         line_num = 0
         for line in task_file:
             # print("current recipe is", tasks_list[0])
-
-
             step       =     line.split()[step_index]      # gets step at a time
             step_time  = int(line.split()[step_time_index]) # gets duration of step
-            tasks_list[0].add_step(step, step_time)
+            tasks_list[0].add_step(step, step_time) # adds new Step object to recipe
             
-            step_node = [step, step_time]
-            recipe.append(step_node)
-
-            print("current STEP is", tasks_list[0].get_step(), "with time", tasks_list[0].get_step().get_time())
-            tasks_list[0].do_step()
-
+            #step_node = [step, step_time]
+            #recipe.append(step_node)
 
             line_num += 1
 
         # print(tasks_list[0], "is first step of recipe and has time", tasks_list[0].get_time())
 
-        recipe_lineup.append(recipe)
-        print(recipe)
-        # print(tasks[clock], recipe_lineup)
+        print("tasks list is", tasks_list)
         
         if recipe: # recipe is not empty
             if cooking_str == "":
@@ -181,7 +174,6 @@ while clock < 50:
     if clock == 16: # this is just for tentative debugging
         done = True
 
-#print(tasks, recipe_lineup)
 html += "</table></html>"
 
 style = """<style>
