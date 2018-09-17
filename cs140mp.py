@@ -4,7 +4,7 @@
 
 
 class Step:
-    def _init_(self, step, time):
+    def __init__(self, step, time):
         self.step = step
         self.time = time
 
@@ -13,9 +13,6 @@ class Step:
 
     def time_step_decrement(self):
         self.time = self.time - 1
-
-    def whats_da_step(self): #returns the step
-        return self.step
 
 class Recipe:
     def _init_(self, name, time, priority, recipe):
@@ -27,10 +24,8 @@ class Recipe:
     def __repr__(self):
         return(str(self.name))
 
-    def add_step(self, name, time):
-        k = Step()
-        k.step = name
-        k.time = time
+    def add_step(self, step, time):
+        k = Step(step, time)
         self.recipe.append(k)
 
     def do_step(self):
@@ -38,9 +33,6 @@ class Recipe:
             self.recipe[0].time_step_decrement()
         else:
             self.recipe.pop(0)
-
-    def dis_step_na(self): #returns the current (yung head/first sa recipe) of the dish
-        return self.recipe[0].whats_da_step()
 
     def time_left_for_step(self):
         return self.recipe[0].time
@@ -68,15 +60,16 @@ for i in range(len(c)):
         dishlist.append(meal)
 
 for i in range(len(dishlist)):
-    a = dishlist[i].name + ".txt"
-    f = open(a, "r")
-    with open(a) as f:
-        b = [word for line in f for word in line.split()]
-    for j in range(len(b)):
+    recipe = dishlist[i].name + ".txt"
+    file = open(recipe, "r")
+    with open(recipe) as file:
+        recipe_line = [word for line in file for word in line.split()]
+
+    for j in range(len(recipe_line)):
         if j % 2 == 0:
-            task = b[j]
+            task = recipe_line[j]
         elif j % 2 != 0:
-            duration = int(b[j])
+            duration = int(recipe_line[j])
             dishlist[i].add_step(task, duration)
     f.close()
 
@@ -93,27 +86,39 @@ win = True
 remarks_dish_arrived = ""
 done_cooking = ""
 
+
 for l in range(0, 30):
     time = time + 1
 
     if(len(dishlist)!=0):
+        print("len(dishlist)!=0")
+
         if dishlist[0].time == time: 
+            print("dishlist[0].time is now:", dishlist[0].time)
             arrived = True
             remarks_dish_arrived = dishlist[0]    #temp holder of the dish that arrived and also for printing purposes
             arrived_dish.append(dishlist[0])
-            task = remarks_dish_arrived.dis_step_na()
+            task = remarks_dish_arrived.recipe[0]
             dishlist.pop(0) 
-            print(task)
-    if (len(dishlist)!=0) and (task == "cook"):
-            if len(cook) == 0 and len(ready) == 0:  #as in walang dish na cino-cook and nagwaiwait para macook hehe so enter na agad sa 'Cook' column
-                cook.append(remarks_dish_arrived)
-            else: 
-                ready.append(remarks_dish_arrived) #will enter the ready queue since there might still be a dish in the 'cook'
+
+            print("task is:", task)
+
+            if task == "cook":
+                print("task was cook")
+
+                if len(cook) == 0 and len(ready) == 0:
+                    cook.append(remarks_dish_arrived)
+                    print("appended remarks_dish_arrived to cook.append.")
+                    print("remarks_dish_arrived was:", remarks_dish_arrived)
+                else:
+                    ready.append(remarks_dish_arrived) #will enter the ready queue since there might still be a dish in the 'cook'
     else:
-            assistants.append(remarks_dish_arrived)  #not 'cook' yung step so will enter the assistants
+        assistants.append(remarks_dish_arrived)  #not 'cook' yung step so will enter the assistants
+            
 
     #UPDATE/CHECK WHAT IS HAPPENING IN COOK COLUMN
     if len(cook) != 0: #may dish sa loob ni cook
+
         if cook[0].time_left_for_step != 0:
             remaining_time = cook[0].time_left_for_step() 
             print(remaining_time)
@@ -175,24 +180,11 @@ for l in range(0, 30):
 
     print("\n\nREADY COLUMN")
     for m in range(len(ready)):
-        print(ready[m].name, "(",ready[m].dis_step_na(),"=",ready[m].time_left_for_step(),")")
+        print(ready[m].name, "(",ready[m].recipe[0],"=",ready[m].time_left_for_step(),")")
         
     
     print("\n\nASSISTANTS COLUMN")
-    for m in range(len(assistants)):
-        print(assistants[m].name, "(",assistants[m].dis_step_na(),"=",assistants[m].time_left_for_step(),")")
-        # assistants[0].do_step()
-        """
-        print(assistants[m].name, "(",assistants[m].dis_step_na(),"=",assistants[m].time_left_for_step(),")")
-        """
-    
 
-    """
-    for m in range(len(ready)):
-        ready[m].do_step()
-        print("did step\n")
-        print(ready[m].name, "(",ready[m].dis_step_na(),"=",ready[m].time_left_for_step(),")")
-    """
 
     print("\n\nREMARKS COLUMN")
     if (arrived == True):
