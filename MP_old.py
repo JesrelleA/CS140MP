@@ -1,3 +1,31 @@
+class Step:
+    def __init__(self, step, time):
+        self.step = step
+        self.time = time
+
+    def __repr__(self):         # same as 'whats_da_step'
+        return(str(self.step))
+
+    def do_step(self):          # time_step_decrement
+        self.time = self.time - 1
+
+class Recipe:
+    def __init__(self, name, time, recipe):
+        self.name = name
+        self.time = time
+        self.recipe = []
+
+    def add_step(self, step, time):
+        s = Step(step, time)
+        self.recipe.append(s)
+
+    def do_step(self):
+        if self.recipe[0].time > 0:
+            self.recipe[0].do_step()
+        else:
+            self.recipe.pop(0)
+
+
 filename = "tasklist.txt"
 file = open(filename, "r")
 
@@ -16,7 +44,7 @@ for line in file:
         task_v = task_i + str(tasks_count[task_i])
         tasks.update({ task_sched_i : task_v})
 
-print(tasks)
+# print(tasks)
 headers = ["Time", "Cook", "Ready", "Assistants", "Remarks"]
 clock = 1;
 
@@ -77,7 +105,7 @@ while clock < 50:
 
         recipe_lineup.append(recipe)
         print(recipe)
-        print(tasks[clock], recipe_lineup)
+        # print(tasks[clock], recipe_lineup)
         
         if recipe: # recipe is not empty
             if cooking == "":
