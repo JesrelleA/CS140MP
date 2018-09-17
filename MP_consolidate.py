@@ -9,11 +9,20 @@ class Step:
     def do_step(self):          # time_step_decrement
         self.time = self.time - 1
 
+    def get_time(self):
+        return int(self.time)
+
 class Recipe:
-    def __init__(self, name, time, recipe):
+    def __init__(self, name, time):
         self.name = name
         self.time = time
-        self.recipe = []
+        self.recipe = [] # is a list of Steps (data struct)
+
+    def __repr__(self):
+        return str(self.name)
+
+    def get_step(self):
+        return str(self.recipe[0])
 
     def add_step(self, step, time):
         s = Step(step, time)
@@ -29,9 +38,11 @@ class Recipe:
 filename = "tasklist.txt"
 file = open(filename, "r")
 
-tasks          = {}
-tasks_count       = {}
+tasks_count = {}
+tasks       = {}
+tasks_list = [] # list of objects Recipe
 
+# gets list of all dishes to be processed
 for line in file:
     task_i       = line.split()[0]
     task_sched_i = int(line.split()[1])
@@ -39,10 +50,21 @@ for line in file:
     if task_i not in tasks_count:    # for 1st encounter with task
         tasks_count.update({task_i : 1})
         tasks.update({ task_sched_i : str(task_i+"1")})
+        
+        task = Recipe(str(task_i+"1"), task_sched_i)
+        print("made task", task_i, "with time", task_sched_i)
+        tasks_list.append(task)
     else:                            # for all subsequent encounters
         tasks_count.update({task_i : tasks_count[task_i]+1})
         task_v = task_i + str(tasks_count[task_i])
         tasks.update({ task_sched_i : task_v})
+        
+        task = Recipe(task_v, task_sched_i)
+        print("made task", task_v, "with sched", task_sched_i)
+        tasks_list.append(task)
+        
+# tasks is now a list of class Recipe with their time
+del(tasks_count)
 
 # print(tasks)
 headers = ["Time", "Cook", "Ready", "Assistants", "Remarks"]
@@ -63,39 +85,46 @@ step_index      = 0
 step_time_index = 1
 
 
-cooking    = ""
-ready      = ""
-assistants = "" #background tasks
-to_cook    = {}
+cooking_str    = ""
+ready_str      = ""
+assistants_str = "" #background tasks
+
+cooking    = []
+ready      = []
+assistants = []
 
 # while not done: 
 
 recipe_lineup = []
-
-
-#while clock <= max(tasks, key=int):  
+ 
 
 while clock < 50:
 # will fix condition
 # atm stops when the last task arrives
 # should stop when last task finishes
-    remarks    = ""
+    remarks_str    = ""
     recipe = []
      # needs to be cleared every clock; but needs to be accessed beyond fetching function
     """
     # chceks arrival times of tasks and fetches recipe
-    if not cooking == "":
-        remarks = "something is already cooking so we " + recipe.get_next_step()[0]
+    if not cooking_str == "":
+        remarks = "something is already_str cooking_str so we " + recipe.get_next_step()[0]
         #recipe.get_next_step()[1] = recipe.get_next_step()[1] - 1
 """
     if clock in tasks: 
+
         remarks = tasks[clock] + " arrives"
 
-        task_filename = ''.join(i for i in tasks[clock] if not i.isdigit()) + ".txt"
+        SMTH = tasks_list[0]
+        print(SMTH.name, "is scheduled for",  SMTH.time)
+
+        task_filename = ''.join(i for i in tasks[clock] if not i.isdigit()) + ".txt" # gets file
         task_file = open(task_filename, "r")   
+        
 
         line_num = 0
         for line in task_file:
+
             step       =     line.split()[step_index]      # gets step at a time
             step_time  = int(line.split()[step_time_index]) # gets duration of step
             step_node = [step, step_time]
@@ -108,20 +137,19 @@ while clock < 50:
         # print(tasks[clock], recipe_lineup)
         
         if recipe: # recipe is not empty
-            if cooking == "":
-                cooking =  '{}({}={})'.format(tasks[clock], recipe[0][0], recipe[0][1])
+            if cooking_str == "":
+                cooking_str =  '{}({}={})'.format(tasks[clock], recipe[0][0], recipe[0][1])
                 recipe[0][1] = recipe[0][1] - 1
-                #cooking = ' '.join(map(str, recipe))
-            elif not cooking == "":
-                ready =  '{}({}={})'.format(tasks[clock], recipe[0][0], recipe[0][1])
+                #cooking_str = ' '.join(map(str, recipe))
+            elif not cooking_str == "":
+                ready_str =  '{}({}={})'.format(tasks[clock], recipe[0][0], recipe[0][1])
                 #recipe.get_next_step()[1] = recipe.get_next_step()[1] - 1
-                remarks += " something is already cooking" #atm it relaces what was already cooking
+                remarks += " something is already_str cooking_str" #atm it relaces what was already_str cooking_str
             else:
-                ready = cooking =  '{}({}={})'.format(tasks[clock], recipe[0][0], recipe[0][1])
+                ready_str = cooking_str =  '{}({}={})'.format(tasks[clock], recipe[0][0], recipe[0][1])
 
-
-        if cooking:
-            cooking =  '{}({}={})'.format(tasks[clock], recipe[0][0], recipe[0][1])
+        if cooking_str:
+            cooking_str =  '{}({}={})'.format(tasks[clock], recipe[0][0], recipe[0][1])
             recipe[0][1] = recipe[0][1] - 1
 
 
@@ -133,10 +161,10 @@ while clock < 50:
         if state == "Time":
             html += "<td>{}</td>".format( str(clock) )
             clock += 1
-        elif state == "Cook":       html += "<td>{}</td>".format( cooking )
-        elif state == "Ready":      html += "<td>{}</td>".format( ready )
-        elif state == "Assistants": html += "<td>{}</td>".format( assistants )
-        elif state == "Remarks":    html += "<td>{}</td>".format( remarks )
+        elif state == "Cook":       html += "<td>{}</td>".format( cooking_str )
+        elif state == "Ready":      html += "<td>{}</td>".format( ready_str )
+        elif state == "Assistants": html += "<td>{}</td>".format( assistants_str )
+        elif state == "Remarks":    html += "<td>{}</td>".format( remarks_str )
         else:                       html += "<td>{}</td>".format( default )
         #"<td>{}</td>".format('<br>'.join("laman"))
     html += "</tr>"
