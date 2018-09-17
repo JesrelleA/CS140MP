@@ -22,7 +22,7 @@ class Recipe:
         return str(self.name)
 
     def get_step(self):
-        return str(self.recipe[0])
+        return self.recipe[0]
 
     def add_step(self, step, time):
         s = Step(step, time)
@@ -115,22 +115,31 @@ while clock < 50:
 
         remarks = tasks[clock] + " arrives"
 
-        SMTH = tasks_list[0]
-        print(SMTH.name, "is scheduled for",  SMTH.time)
-
+        SMTH = tasks_list[0] # gets head of tasklist
+        
         task_filename = ''.join(i for i in tasks[clock] if not i.isdigit()) + ".txt" # gets file
         task_file = open(task_filename, "r")   
         
 
         line_num = 0
         for line in task_file:
+            # print("current recipe is", tasks_list[0])
+
 
             step       =     line.split()[step_index]      # gets step at a time
             step_time  = int(line.split()[step_time_index]) # gets duration of step
+            tasks_list[0].add_step(step, step_time)
+            
             step_node = [step, step_time]
             recipe.append(step_node)
 
+            print("current STEP is", tasks_list[0].get_step(), "with time", tasks_list[0].get_step().get_time())
+            tasks_list[0].do_step()
+
+
             line_num += 1
+
+        # print(tasks_list[0], "is first step of recipe and has time", tasks_list[0].get_time())
 
         recipe_lineup.append(recipe)
         print(recipe)
