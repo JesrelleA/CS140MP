@@ -1,0 +1,210 @@
+#nakaformat to class na yung mga inputs pero di pa nahahandle yung pagsame yung name
+#working na yung pagpasok on time nung dish
+#nakakapagcook na pero yung sa first dish palang... huhu ayaw magpop pag cook == 0. Idk why medj sabaw na huhu
+
+
+class Step:
+    def __init__(self, step, time):
+        self.step = step
+        self.time = time
+
+    def __repr__(self):
+        return(str(self.step))
+
+    def time_step_decrement(self):
+        self.time = self.time - 1
+
+class Recipe:
+    def _init_(self, name, time, priority, recipe):
+        self.name = name
+        self.time = time
+        self.priority = priority
+        self.recipe = []
+
+    def __repr__(self):
+        return(str(self.name))
+
+    def add_step(self, step, time):
+        k = Step(step, time)
+        self.recipe.append(k)
+
+    def do_step(self):
+        if self.recipe[0].time > 0:
+            self.recipe[0].time_step_decrement()
+        else:
+            self.recipe.pop(0)
+
+    def time_left_for_step(self):
+        return self.recipe[0].time
+
+dishlist = []
+
+f = open("Tasklist.txt", "r") #open file
+with open('Tasklist.txt') as f:
+    c = [word for line in f for word in line.split()]
+f.close()
+
+
+p = 1
+i = 0
+
+for i in range(len(c)):
+    if i % 2 == 0:
+        meal = Recipe()
+        meal.name = c[i]
+    elif i % 2 != 0:
+        meal.time = int(c[i])
+        meal.priority = p
+        meal.recipe = []
+        p = p + 1
+        dishlist.append(meal)
+
+for i in range(len(dishlist)):
+    recipe = dishlist[i].name + ".txt"
+    file = open(recipe, "r")
+    with open(recipe) as file:
+        recipe_line = [word for line in file for word in line.split()]
+
+    for j in range(len(recipe_line)):
+        if j % 2 == 0:
+            task = recipe_line[j]
+        elif j % 2 != 0:
+            duration = int(recipe_line[j])
+            dishlist[i].add_step(task, duration)
+    f.close()
+
+time = 0
+arrived_dish = []
+cook = [] 
+ready = []
+assistants = []
+
+arrived = False
+cooked_done = False
+cook_empty = False
+win = True
+remarks_dish_arrived = ""
+done_cooking = ""
+
+# docker pull pgcbioinfo/blast
+
+for l in range(0, 30):
+    time = time + 1
+    print("dishlist is now", dishlist, "with length",  len(dishlist))
+    if(len(dishlist)!=0):
+        print("len(dishlist)!=0")
+
+        if dishlist[0].time == time: 
+            print("dishlist[0].time is now:", dishlist[0].time)
+            arrived = True
+
+            remarks_dish_arrived = dishlist[0]    #temp holder of the dish that arrived and also for printing purposes
+            arrived_dish.append(dishlist[0])
+
+            task = remarks_dish_arrived.recipe[0]
+            dishlist.pop(0) 
+
+            print("task is:", task)
+
+            if (str(task) == "cook"):
+                print("task WAS cook")
+
+                if len(cook) == 0 and len(ready) == 0:
+                    cook.append(remarks_dish_arrived)
+                    print("appended remarks_dish_arrived to cook.append.")
+                    print("remarks_dish_arrived was:", remarks_dish_arrived)
+                else:
+                    ready.append(remarks_dish_arrived) #will enter the ready queue since there might still be a dish in the 'cook'
+            else: # was first step and was NOT cook
+                print("task was NOT cook")
+                assistants.append(remarks_dish_arrived)  #not 'cook' yung step so will enter the assistants
+        else: # was NOT first step and was NOT COOK
+                print("task was NOT cook")
+                assistants.append(remarks_dish_arrived)  #not 'cook' yung step so will enter the assistants
+
+    #UPDATE/CHECK WHAT IS HAPPENING IN COOK COLUMN
+
+    if len(cook) != 0: #may dish sa loob ni cook
+
+        if cook[0].time_left_for_step != 0:
+            remaining_time = cook[0].time_left_for_step() 
+            print(remaining_time)
+            if remaining_time == 0:
+                print("DONE COOKING")
+                cooked_done = True
+                done_cooking = cook[0]
+                
+                cook[0].recipe.pop(0) #delete 'cook' in the recipe of the dish
+                if len(cook[0].recipe) != 0: #may next step yung dish
+                    print("DONE COOKING 2")
+                    if cook[0].recipe[0] == "cook":
+                        #print in Cook: {cook[0].name}(cook={cook[0].time_left_for_step})
+                        cook[0].do_step()
+                    else:
+                        
+                        print("code was: assistants.append(cook[0])") 
+                        assistants.append(cook[0])
+                        print("APPENDED SOMETHING TO COOKING") # ri added
+                        print("the thing appended was", cook[0].recipe[0])
+                        done_cooking = cook[0]
+                    cook[0].recipe.pop(0) #delete the dish in 'cook' since its cooked hehe
+                cook.pop(0)
+
+            else:
+                cooked_done = False
+        
+    if len(cook) == 0 and len(ready) == 0: # wala ng icoo-cook
+        cook_empty = True
+
+    if len(cook) == 0 and len(ready) != 0:
+        # INSERT ALGO THAT GETS THE DISH WITH THE HIGHEST PRIORITY
+        print("Cook column is empty but \nthere's dish waiting in the ready column!")
+        var = 100
+        h = 0
+        for d in range(len(ready)):
+            compare = ready[d].priority
+            if (compare < var):
+                var = compare
+                winner = ready[d]
+                h = d
+            #winner = #gets the dish with the highest priority to be cooked
+            #delete the dish winner in the ready queue
+            
+            #print in Remarks: {winner.name}[chosen]
+        ready.pop(h)
+        cook.append(winner)
+        #ready.pop(h)
+
+    #REMARKS PRINTING
+    print("time = ", time)
+
+    print("\n\nCOOK COLUMN")
+    if (cook_empty == True):
+        cook_empty = False
+    else:
+        print(cook[0].name, "(cook=", cook[0].recipe[0].time, ")")
+        cook[0].do_step()
+
+    print("\n\nREADY COLUMN")
+    for m in range(len(ready)):
+        print(ready[m].name, "(",ready[m].recipe[0],"=",ready[m].time_left_for_step(),")")
+        
+    
+    print("\n\nASSISTANTS COLUMN")
+
+
+    print("\n\nREMARKS COLUMN")
+    if (arrived == True):
+        arrived = False
+        print(remarks_dish_arrived.name, "arrives")
+   
+    if cooked_done == True:
+        cooked_done = False
+        print(done_cooking.name,"[cook done]")
+
+    print("-----------------")
+
+    #break
+
+
+print("YAAAAAAAAY")
