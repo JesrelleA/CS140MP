@@ -7,7 +7,7 @@ class Step:
         self.time = time
 
     def __repr__(self): # same as whats_da_step(self)
-        return self.step
+        return str(self.step)
 
     def time_step_decrement(self):
         self.time = self.time - 1
@@ -71,17 +71,15 @@ for line in file:
         task = Recipe(task_v, task_sched_i)
         print("made task", task_v, "with sched", task_sched_i)
         dishlist.append(task)
-
-
 print(dishlist)
-#input()
 
 time = 0
-row = 0
+row  = 0
+
 arrived_dish = []
-cook = [] 
-ready = []
-assistants = []
+cook         = [] 
+ready        = []
+assistants   = []
 
 arrived         = False
 cooked_done     = False
@@ -104,7 +102,6 @@ donetasks_assistants = []
 index                = []
 remarks_checker      = []
 
-
 output_html = open("output.html", "w")
 
 headers = ["Time", "Cook", "Ready", "Assistants", "Remarks"]
@@ -115,7 +112,6 @@ html = "<html><table border=\"1\">"
 for state in headers:
     html += "<th>{}</th>".format(state)
 html += "</tr>"
-
 output_html.write(html)
 
 print(len(remarks_checker))
@@ -124,18 +120,14 @@ for i in range(0,140):#while (True):  #for l in range(0, 30):
     time = time + 1
     if time in tasks: 
         task_filename = ''.join(i for i in tasks[time] if not i.isdigit()) + ".txt" # gets file
-        task_file = open(task_filename, "r")   
+        task_file     = open(task_filename, "r")  
 
         line_num = 0
         for line in task_file:
             # print("current recipe is", tasks_list[0])
             step       =     line.split()[0]      # gets step at a time
-            step_time  = int(line.split()[1]) # gets duration of step
+            step_time  = int(line.split()[1])     # gets duration of step
             dishlist[0].add_step(step, step_time) # adds new Step object to recipe
-            
-            #step_node = [step, step_time]
-            #recipe.append(step_node)
-
             line_num += 1
 
     if(len(dishlist)!=0):
@@ -148,17 +140,15 @@ for i in range(0,140):#while (True):  #for l in range(0, 30):
             dishlist.pop(0) 
             #print(task)
     if (arrived == True) and (task == "cook"): #if (len(dishlist)!=0) and (task == "cook"):
-	        if len(cook) == 0 and len(ready) == 0:  #as in walang dish na cino-cook and nagwaiwait para macook hehe so enter na agad sa 'Cook' column
-	            cook.append(remarks_dish_arrived)
-	        else: 
-	            ready.append(remarks_dish_arrived) #will enter the ready queue since there might still be a dish in the 'cook'
+	    if len(cook) == 0 and len(ready) == 0:  #as in walang dish na cino-cook and nagwaiwait para macook hehe so enter na agad sa 'Cook' column
+	        cook.append(remarks_dish_arrived)
+	    else: 
+	       ready.append(remarks_dish_arrived) #will enter the ready queue since there might still be a dish in the 'cook'
     elif (arrived == True) and (task != "cook"): #elif (len(dishlist)!=0) and (task != "cook"):
-	        assistants.append(remarks_dish_arrived)  #not 'cook' yung step so will enter the assistants
-
+	    assistants.append(remarks_dish_arrived)  #not 'cook' yung step so will enter the assistants
 
     #UPDATE/CHECK WHAT IS HAPPENING IN COOK COLUMN
     if len(cook) != 0: #may dish sa loob ni cook
-
         if cook[0].time_left_for_step() != 0:
             remaining_time = cook[0].time #cook[0].time_left_for_step() 
             print(remaining_time)
@@ -215,7 +205,6 @@ for i in range(0,140):#while (True):  #for l in range(0, 30):
             #print(done_cooking1.name, "[chosen]")
         elif len(ready) == 0:
             ready_empty = True
-            #print("00000")
         
 
     #UPDATE/CHECK WHAT IS HAPPENING IN THE ASSISSTANT COLUMN
@@ -252,8 +241,7 @@ for i in range(0,140):#while (True):  #for l in range(0, 30):
         if (len(assistants) == 0):
             break
 
-    #REMARKS PRINTING
-
+    # TABLE CONTENTS PRINTING
     output_html.write(format_cell(time))
     print("time = ", time)
 
@@ -270,7 +258,9 @@ for i in range(0,140):#while (True):  #for l in range(0, 30):
         output_html.write(format_cell(cook_str))
 
     print()
+
     print("READY COLUMN")
+    ready_str = ""
     if len(ready) == 0:
         print("none")
         output_html.write(format_cell(default))
@@ -278,12 +268,13 @@ for i in range(0,140):#while (True):  #for l in range(0, 30):
     else:
         for m in range(len(ready)):
             print(ready[m].name, "(",ready[m].dis_step_na(),"=",ready[m].time_left_for_step(),")")
-            ready_str = printthis + ready[m].name + "(" + ready[m].dis_step_na() + "=" + str(ready[m].time_left_for_step()) + ")"   
+            ready_str = ready_str + ready[m].name + "(" + ready[m].dis_step_na() + "=" + str(ready[m].time_left_for_step()) + ")"   
+        
         output_html.write(format_cell(ready_str))
 
     print()
 
-    assistants_str = ""
+    assistants_str = default
 
     print("ASSISSTANT COLUMN")
     if done_assistants ==  True:
@@ -292,24 +283,23 @@ for i in range(0,140):#while (True):  #for l in range(0, 30):
         assistants = [assistant for assistant in assistants if assistant != []]
         index = []
 
-    #printthis = "<td>"
     for m in range(len(assistants)):
         print(assistants[m].name, "(", assistants[m].dis_step_na(), "=", assistants[m].time_left_for_step(), ")")
-        printthis = printthis + assistants[m].name + "(" + assistants[m].dis_step_na() + "=" + str(assistants[m].time_left_for_step()) + ") "
-        assistants_str = printthis + assistants[m].name + "(" + assistants[m].dis_step_na() + "=" + str(assistants[m].time_left_for_step()) + ") "
+        # printthis = printthis + assistants[m].name + "(" + assistants[m].dis_step_na() + "=" + str(assistants[m].time_left_for_step()) + ") "
+        assistants_str = assistants[m].name + "(" + assistants[m].dis_step_na() + "=" + str(assistants[m].time_left_for_step()) + ") "
         
         #print("doing the step")
         assistants[m].do_step()
         #print("NAGDECREMENT NA")
 
-    if assistants_empty: #assistants_empty == True:
+    if assistants_empty: 
         assistants_empty = False
         print("none")
         row = row + 1
 
-        assistants_str += format_cell(default)
+        #assistants_str = default
     
-    output_html.write(assistants_str)
+    output_html.write(format_cell(assistants_str))
     assistants_empty = False
 
 
@@ -339,19 +329,12 @@ for i in range(0,140):#while (True):  #for l in range(0, 30):
             assistants_done, donetasks_assistants = [], []
     else:
         print("none")
-        remarks = remarks + "none"
+        remarks = "none"
 
     row = row + 1
-
-
-    html = ""
-
-    
-
     remarks_checker = []
 
     output_html.write(format_cell(remarks))
-
 
     if row == 4:
         output_html.write("</tr>")
@@ -362,11 +345,8 @@ for i in range(0,140):#while (True):  #for l in range(0, 30):
     output_html.write("</tr>")
     print("------------------------------------------------------------------------------------------")
 
-    #input()
-    #break
 
-html = ""
-html += "</table></html>"
+html = "</table></html>"
 
 style = """<style>
 th {
@@ -392,11 +372,17 @@ table {
 user agent stylesheet
 table {
     display: table;
-    border-collapse: separate;
     border-spacing: 2px;
     border-color: grey;
+    border: 1px solid black;
+    border-collapse: collapse;
 }
 
+html {
+    background-color: silver;
+
+    
+}
 
 table, th, td {
     border: 1px solid black;
@@ -406,6 +392,8 @@ table, th, td {
 }
 
 td {
+    white-space:pre;
+    vertical-align:top
 
     /* css-3 */
     white-space: -o-pre-wrap; 
@@ -415,19 +403,27 @@ td {
     white-space: -pre-wrap; 
 }
 
-td {
-    bgcolor = gray
-    
+th{
+    background-color: silver;
+}
+
+
+td:nth-child(1){
+    width: 50px;
+}
+
+tr:nth-child(2n+1){
+    background-color: #5CE6E6;
+}
+
+tr:nth-child(2n){
+    background-color: #CFFBF1;
 }
 </style>
 """
 
+html+= style
+
 output_html.write(html)
-"""
-output_html.write("</table>")
-output_html.write("")
-output_html.write("</body>")
-output_html.write("</html>")
-"""
 output_html.close()
 print("YAAAAAAAAY")
