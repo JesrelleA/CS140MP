@@ -6,6 +6,9 @@ class Step:
         self.step = step
         self.time = time
 
+    def __repr__(self): # same as whats_da_step(self)
+        return self.step
+
     def time_step_decrement(self):
         self.time = self.time - 1
 
@@ -21,10 +24,11 @@ class Recipe:
         self.time = time
         self.recipe = []
 
+    def __repr__(self):
+        return self.name
+
     def add_step(self, name, time):
-        k = Step("","")
-        k.step = name
-        k.time = time
+        k = Step(name,time)
         self.recipe.append(k)
 
     def do_step(self):
@@ -45,8 +49,6 @@ tasks_count = {}
 tasks       = {}
 dishlist = []
 
-
-# from Ri file
 filename = "tasklist.txt"
 file = open(filename, "r")
 
@@ -101,19 +103,18 @@ done_assistants      = []
 donetasks_assistants = []
 index                = []
 remarks_checker      = []
-default              = "none"
 
 
 output_html = open("output.html", "w")
 
 headers = ["Time", "Cook", "Ready", "Assistants", "Remarks"]
+default = "none"
 
 # formats header
 html = "<html><table border=\"1\">"     
 for state in headers:
     html += "<th>{}</th>".format(state)
 html += "</tr>"
-
 
 output_html.write(html)
 
@@ -124,7 +125,6 @@ for i in range(0,140):#while (True):  #for l in range(0, 30):
     if time in tasks: 
         task_filename = ''.join(i for i in tasks[time] if not i.isdigit()) + ".txt" # gets file
         task_file = open(task_filename, "r")   
-
 
         line_num = 0
         for line in task_file:
@@ -311,7 +311,7 @@ for i in range(0,140):#while (True):  #for l in range(0, 30):
 
         html += format_cell(default)
         output_html.write(html)
-        
+
         # output_html.write("  <td>none</td>")
     elif assistants_empty == False:
 
@@ -323,37 +323,38 @@ for i in range(0,140):#while (True):  #for l in range(0, 30):
 
     remarks = ""
     print("REMARKS COLUMN")
-    #printthis = "   <td>"
-    if(len(remarks_checker) == 0):
+    if arrived or cooked_done or done_assistants:
+        if (arrived == True):
+            arrived = False
+            print(remarks_dish_arrived.name, "arrives")
+            remarks = remarks + remarks_dish_arrived.name + "[arrives]. "
+            #output_html.write(printthis)
+       
+        if cooked_done == True:
+            cooked_done = False
+            print(done_cooking.name,"[cook done]")
+            remarks = remarks + done_cooking.name + "[cook done]. "
+            if win == True:
+                win = False
+                print(done_cooking1.name, "[chosen]")
+                remarks = remarks + done_cooking1.name + "[chosen]. "
+                #output_html.write(printthis)
+        if done_assistants == True:
+            done_assistants = False
+            for m in range(len(assistants_done)):
+                print(assistants_done[m].name, "[", donetasks_assistants[m], "done ]")
+                remarks = remarks + assistants_done[m].name + "[" + donetasks_assistants[m] + " done]. "
+            assistants_done, donetasks_assistants = [], []
+    else:
         print("none")
         remarks = remarks + "none"
-        #3.write("  <td>none")
-        row = row + 1
 
-    if (arrived == True):
-        arrived = False
-        print(remarks_dish_arrived.name, "arrives")
-        remarks = remarks + remarks_dish_arrived.name + "[arrives]. "
-        #output_html.write(printthis)
-   
-    if cooked_done == True:
-        cooked_done = False
-        print(done_cooking.name,"[cook done]")
-        remarks = remarks + done_cooking.name + "[cook done]. "
-        if win == True:
-            win = False
-            print(done_cooking1.name, "[chosen]")
-            remarks = remarks + done_cooking1.name + "[chosen]. "
-            #output_html.write(printthis)
+    row = row + 1
+
 
     html = ""
 
-    if done_assistants == True:
-    	done_assistants = False
-    	for m in range(len(assistants_done)):
-            print(assistants_done[m].name, "[", donetasks_assistants[m], "done ]")
-            remarks = remarks + assistants_done[m].name + "[" + donetasks_assistants[m] + " done]. "
-    	assistants_done, donetasks_assistants = [], []
+    
 
     remarks_checker = []
 
