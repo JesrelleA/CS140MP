@@ -75,35 +75,38 @@ print(dishlist)
 #input()
 
 time = 0
-stop = 0
+row = 0
 arrived_dish = []
 cook = [] 
 ready = []
 assistants = []
 
-arrived = False
-cooked_done = False
-cook_empty = False
-ready_empty = False
-win = False
+arrived         = False
+cooked_done     = False
+cook_empty      = False
+ready_empty     = False
+win             = False
 done_assistants = False
 
 assistants_empty = False
+
+# strings for printing
 remarks_dish_arrived = ""
-done_cooking = ""
-done_cooking1 = ""
-assistants_done = []
-done_assistants = []
+done_cooking         = ""
+done_cooking1        = ""
+
+# lists
+assistants_done      = []
+done_assistants      = []
 donetasks_assistants = []
-index = []
-remarks_checker = []
-default = "none"
+index                = []
+remarks_checker      = []
+default              = "none"
 
 
-f3 = open("output.html", "w")
+output_html = open("output.html", "w")
 
 headers = ["Time", "Cook", "Ready", "Assistants", "Remarks"]
-clock = 1;
 
 # formats header
 html = "<html><table border=\"1\">"     
@@ -111,7 +114,8 @@ for state in headers:
     html += "<th>{}</th>".format(state)
 html += "</tr>"
 
-f3.write(html)
+
+output_html.write(html)
 
 print(len(remarks_checker))
 #print(len(cook) != 0) and (len(ready) != 0) and (len(assistants) != 0) and (len(remarks_checker) != 0)
@@ -150,6 +154,7 @@ for i in range(0,140):#while (True):  #for l in range(0, 30):
 	            ready.append(remarks_dish_arrived) #will enter the ready queue since there might still be a dish in the 'cook'
     elif (arrived == True) and (task != "cook"): #elif (len(dishlist)!=0) and (task != "cook"):
 	        assistants.append(remarks_dish_arrived)  #not 'cook' yung step so will enter the assistants
+
 
     #UPDATE/CHECK WHAT IS HAPPENING IN COOK COLUMN
     if len(cook) != 0: #may dish sa loob ni cook
@@ -246,18 +251,11 @@ for i in range(0,140):#while (True):  #for l in range(0, 30):
                     assistants.append(temp)
         if (len(assistants) == 0):
             break
-	
-
-
-
-
-
 
     #REMARKS PRINTING
-    f3.write("<tr>")
-    output = " <td>" + str(time) + "</td>" #" <td>" + str(time) + "</td>"
-    f3.write(output)
-    #f3.write("  <td>")
+
+    output = "<td>" + str(time) + "</td>"
+    output_html.write(output)
     print("time = ", time)
     print()
 
@@ -265,36 +263,35 @@ for i in range(0,140):#while (True):  #for l in range(0, 30):
     if (cook_empty == True):
         cook_empty = False
         print("none")
-        stop = stop + 1
-        f3.write(format_cell(default))
-        # f3.write("  <td>none</td>")
+        row = row + 1
+        output_html.write(format_cell(default))
+        # output_html.write("  <td>none</td>")
     else:
         print(cook[0].name, "(cook=", cook[0].time_left_for_step(), ")") #print(cook[0].name, "(cook=", cook[0].recipe[0].time, ")")
         printthis = "   <td>" + cook[0].name + "(cook=" + str(cook[0].time_left_for_step()) + ")</td>" #####HEEEEEERE
         cook[0].do_step()
-        f3.write(printthis)
+        output_html.write(printthis)
 
     print()
     print("READY COLUMN")
     if len(ready) == 0:
         print("none")
-        f3.write("  <td>none</td>")
-        stop = stop + 1
+        output_html.write("  <td>none</td>")
+        row = row + 1
     else:
         printthis = "   <td>"
         for m in range(len(ready)):
             print(ready[m].name, "(",ready[m].dis_step_na(),"=",ready[m].time_left_for_step(),")")
             printthis = printthis + ready[m].name + "(" + ready[m].dis_step_na() + "=" + str(ready[m].time_left_for_step()) + ") "
         printthis = printthis + "</td>"
-        f3.write(printthis)
+        output_html.write(printthis)
 
     print()
+
+    html = ""
     print("ASSISSTANT COLUMN")
     if done_assistants ==  True:
         for w in range(len(index)):
-            #print(assistants)
-            #print(index[w])
-            #input()
             assistants[index[w]] = []
         assistants = [assistant for assistant in assistants if assistant != []]
         index = []
@@ -310,60 +307,66 @@ for i in range(0,140):#while (True):  #for l in range(0, 30):
     if (len(assistants) == 0) or (assistants_empty == True): #assistants_empty == True:
         assistants_empty = False
         print("none")
-        stop = stop + 1#h = input()
-        #printthis = "<th>none</th>"
-        f3.write("  <td>none</td>")
-        #f3.write()
+        row = row + 1
+
+        html += format_cell(default)
+        output_html.write(html)
+        
+        # output_html.write("  <td>none</td>")
     elif assistants_empty == False:
+
         printthis = printthis + "</td>"
-        f3.write(printthis)
+        output_html.write(printthis)
 
     assistants_empty = False
 
+
+    remarks = ""
     print("REMARKS COLUMN")
-    printthis = "   <td>"
+    #printthis = "   <td>"
     if(len(remarks_checker) == 0):
         print("none")
-        printthis = printthis + "none"
+        remarks = remarks + "none"
         #3.write("  <td>none")
-        stop = stop + 1
+        row = row + 1
 
     if (arrived == True):
         arrived = False
         print(remarks_dish_arrived.name, "arrives")
-        printthis = printthis + remarks_dish_arrived.name + "[arrives]. "
-        #f3.write(printthis)
+        remarks = remarks + remarks_dish_arrived.name + "[arrives]. "
+        #output_html.write(printthis)
    
     if cooked_done == True:
         cooked_done = False
         print(done_cooking.name,"[cook done]")
-        printthis = printthis + done_cooking.name + "[cook done]. "
+        remarks = remarks + done_cooking.name + "[cook done]. "
         if win == True:
             win = False
             print(done_cooking1.name, "[chosen]")
-            printthis = printthis + done_cooking1.name + "[chosen]. "
-            #f3.write(printthis)
+            remarks = remarks + done_cooking1.name + "[chosen]. "
+            #output_html.write(printthis)
+
+    html = ""
 
     if done_assistants == True:
     	done_assistants = False
     	for m in range(len(assistants_done)):
             print(assistants_done[m].name, "[", donetasks_assistants[m], "done ]")
-            printthis = printthis + assistants_done[m].name + "[" + donetasks_assistants[m] + " done]. "
+            remarks = remarks + assistants_done[m].name + "[" + donetasks_assistants[m] + " done]. "
     	assistants_done, donetasks_assistants = [], []
 
     remarks_checker = []
-    printthis = printthis + "</td>"
-    f3.write(printthis)
+
+    output_html.write(format_cell(remarks))
 
 
-    if stop == 4:
-        f3.write("</tr>")
+    if row == 4:
+        output_html.write("</tr>")
         break
-    stop = 0
-    f3.write("</tr>")
 
+    row = 0
 
-
+    output_html.write("</tr>")
     print("------------------------------------------------------------------------------------------")
 
     #input()
@@ -426,12 +429,12 @@ td {
 </style>
 """
 
-f3.write(html)
+output_html.write(html)
 """
-f3.write("</table>")
-f3.write("")
-f3.write("</body>")
-f3.write("</html>")
+output_html.write("</table>")
+output_html.write("")
+output_html.write("</body>")
+output_html.write("</html>")
 """
-f3.close()
+output_html.close()
 print("YAAAAAAAAY")
