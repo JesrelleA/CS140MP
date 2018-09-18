@@ -95,7 +95,26 @@ assistants = []
 
 # while not done: 
 
+time = 0
+arrived_dish = []
+cook = [] 
+ready = []
+assistants = []
 
+arrived = False
+cooked_done = False
+cook_empty = False
+win = False
+done_assistants = False
+
+assistants_empty = False
+remarks_dish_arrived = ""
+done_cooking = ""
+done_cooking1 = ""
+assistants_done = []
+done_assistants = []
+donetasks_assistants = []
+index = []
 
 
 
