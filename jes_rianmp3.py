@@ -254,41 +254,37 @@ for i in range(0,140):#while (True):  #for l in range(0, 30):
 
     #REMARKS PRINTING
 
-    output = "<td>" + str(time) + "</td>"
-    output_html.write(output)
+    output_html.write(format_cell(time))
     print("time = ", time)
-    print()
 
     print("COOK COLUMN")
-    if (cook_empty == True):
+    if cook_empty:
         cook_empty = False
         print("none")
         row = row + 1
         output_html.write(format_cell(default))
-        # output_html.write("  <td>none</td>")
     else:
         print(cook[0].name, "(cook=", cook[0].time_left_for_step(), ")") #print(cook[0].name, "(cook=", cook[0].recipe[0].time, ")")
-        printthis = "   <td>" + cook[0].name + "(cook=" + str(cook[0].time_left_for_step()) + ")</td>" #####HEEEEEERE
+        cook_str = "{}(cook={})".format(cook[0].name, cook[0].time_left_for_step() )
         cook[0].do_step()
-        output_html.write(printthis)
+        output_html.write(format_cell(cook_str))
 
     print()
     print("READY COLUMN")
     if len(ready) == 0:
         print("none")
-        output_html.write("  <td>none</td>")
+        output_html.write(format_cell(default))
         row = row + 1
     else:
-        printthis = "   <td>"
         for m in range(len(ready)):
             print(ready[m].name, "(",ready[m].dis_step_na(),"=",ready[m].time_left_for_step(),")")
-            printthis = printthis + ready[m].name + "(" + ready[m].dis_step_na() + "=" + str(ready[m].time_left_for_step()) + ") "
-        printthis = printthis + "</td>"
-        output_html.write(printthis)
+            ready_str = printthis + ready[m].name + "(" + ready[m].dis_step_na() + "=" + str(ready[m].time_left_for_step()) + ")"   
+        output_html.write(format_cell(ready_str))
 
     print()
 
-    html = ""
+    assistants_str = ""
+
     print("ASSISSTANT COLUMN")
     if done_assistants ==  True:
         for w in range(len(index)):
@@ -296,41 +292,37 @@ for i in range(0,140):#while (True):  #for l in range(0, 30):
         assistants = [assistant for assistant in assistants if assistant != []]
         index = []
 
-    printthis = "<td>"
+    #printthis = "<td>"
     for m in range(len(assistants)):
         print(assistants[m].name, "(", assistants[m].dis_step_na(), "=", assistants[m].time_left_for_step(), ")")
         printthis = printthis + assistants[m].name + "(" + assistants[m].dis_step_na() + "=" + str(assistants[m].time_left_for_step()) + ") "
+        assistants_str = printthis + assistants[m].name + "(" + assistants[m].dis_step_na() + "=" + str(assistants[m].time_left_for_step()) + ") "
+        
         #print("doing the step")
         assistants[m].do_step()
         #print("NAGDECREMENT NA")
-    printthis = printthis # 
-    if (len(assistants) == 0) or (assistants_empty == True): #assistants_empty == True:
+
+    if assistants_empty: #assistants_empty == True:
         assistants_empty = False
         print("none")
         row = row + 1
 
-        html += format_cell(default)
-        output_html.write(html)
-
-        # output_html.write("  <td>none</td>")
-    elif assistants_empty == False:
-
-        printthis = printthis + "</td>"
-        output_html.write(printthis)
-
+        assistants_str += format_cell(default)
+    
+    output_html.write(assistants_str)
     assistants_empty = False
 
 
     remarks = ""
     print("REMARKS COLUMN")
     if arrived or cooked_done or done_assistants:
-        if (arrived == True):
+        if arrived:
             arrived = False
             print(remarks_dish_arrived.name, "arrives")
             remarks = remarks + remarks_dish_arrived.name + "[arrives]. "
             #output_html.write(printthis)
        
-        if cooked_done == True:
+        if cooked_done:
             cooked_done = False
             print(done_cooking.name,"[cook done]")
             remarks = remarks + done_cooking.name + "[cook done]. "
@@ -339,7 +331,7 @@ for i in range(0,140):#while (True):  #for l in range(0, 30):
                 print(done_cooking1.name, "[chosen]")
                 remarks = remarks + done_cooking1.name + "[chosen]. "
                 #output_html.write(printthis)
-        if done_assistants == True:
+        if done_assistants:
             done_assistants = False
             for m in range(len(assistants_done)):
                 print(assistants_done[m].name, "[", donetasks_assistants[m], "done ]")
