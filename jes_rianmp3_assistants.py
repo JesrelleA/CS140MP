@@ -1,5 +1,4 @@
-def format_cell(string):
-    return "<td>{}</td>".format(string)
+
 
 class Step:
     def __init__(self, step, time):
@@ -16,9 +15,10 @@ class Step:
     	return self.time
 
 class Recipe:
-    def __init__(self, name, time):
+    def __init__(self, name, time, priority, recipe):
         self.name = name
         self.time = time
+        self.priority = priority
         self.recipe = []
 
     def add_step(self, name, time):
@@ -40,36 +40,41 @@ class Recipe:
     	#return self.recipe[0].whats_da_time()
         return self.recipe[0].time
 
-
-tasks_count = {}
-tasks       = {}
 dishlist = []
 
+f = open("Tasklist.txt", "r") #open file
+with open('Tasklist.txt') as f:
+    c = [word for line in f for word in line.split()]
 
-# from Ri file
-filename = "tasklist.txt"
-file = open(filename, "r")
+f.close()
+p = 1
+i = 0
 
-for line in file:
-    task_i       = line.split()[0]
-    task_sched_i = int(line.split()[1])
 
-    if task_i not in tasks_count:    # for 1st encounter with task
-        tasks_count.update({task_i : 1})
-        tasks.update({ task_sched_i : str(task_i+"1")})
-        
-        task = Recipe(str(task_i+"1"), task_sched_i)
-        print("made task", task_i, "with time", task_sched_i)
-        dishlist.append(task)
-    else:                            # for all subsequent encounters
-        tasks_count.update({task_i : tasks_count[task_i]+1})
-        task_v = task_i + str(tasks_count[task_i])
-        tasks.update({ task_sched_i : task_v})
-        
-        task = Recipe(task_v, task_sched_i)
-        print("made task", task_v, "with sched", task_sched_i)
-        dishlist.append(task)
 
+for i in range(len(c)):
+    if i % 2 == 0:
+        meal = Recipe("",0,0,[])
+        meal.name = c[i]
+    elif i % 2 != 0:
+        meal.time = int(c[i])
+        meal.priority = p
+        meal.recipe = []
+        p = p + 1
+        dishlist.append(meal)
+
+for i in range(len(dishlist)):
+    a = dishlist[i].name + ".txt"
+    f = open(a, "r")
+    with open(a) as f:
+        b = [word for line in f for word in line.split()]
+    for j in range(len(b)):
+        if j % 2 == 0:
+            task = b[j]
+        elif j % 2 != 0:
+            duration = int(b[j])    
+            dishlist[i].add_step(task, duration)
+    f.close()
 
 print(dishlist)
 #input()
@@ -97,42 +102,31 @@ done_assistants = []
 donetasks_assistants = []
 index = []
 remarks_checker = []
-default = "none"
 
 
 f3 = open("output.html", "w")
-
-headers = ["Time", "Cook", "Ready", "Assistants", "Remarks"]
-clock = 1;
-
-# formats header
-html = "<html><table border=\"1\">"     
-for state in headers:
-    html += "<th>{}</th>".format(state)
-html += "</tr>"
-
-f3.write(html)
+f3.write("<html>")
+f3.write("<head>")
+f3.write("<style>")
+f3.write("table, th, td {")
+f3.write("  border: 1px solid black;")
+f3.write("}")
+f3.write("</style>")
+f3.write("</head>")
+f3.write("<body>")
+f3.write("<table border=1>")
+f3.write("<tr>")
+f3.write("  <th>Time</th>")
+f3.write("  <th>Cook</th>")
+f3.write("  <th>Ready</th>")
+f3.write("  <th>Assistant</th>")
+f3.write("  <th>Remarks</th>")
+f3.write("</tr>")
 
 print(len(remarks_checker))
 #print(len(cook) != 0) and (len(ready) != 0) and (len(assistants) != 0) and (len(remarks_checker) != 0)
 for i in range(0,140):#while (True):  #for l in range(0, 30):
     time = time + 1
-    if time in tasks: 
-        task_filename = ''.join(i for i in tasks[time] if not i.isdigit()) + ".txt" # gets file
-        task_file = open(task_filename, "r")   
-
-
-        line_num = 0
-        for line in task_file:
-            # print("current recipe is", tasks_list[0])
-            step       =     line.split()[0]      # gets step at a time
-            step_time  = int(line.split()[1]) # gets duration of step
-            dishlist[0].add_step(step, step_time) # adds new Step object to recipe
-            
-            #step_node = [step, step_time]
-            #recipe.append(step_node)
-
-            line_num += 1
 
     if(len(dishlist)!=0):
     	if dishlist[0].time == time: 
@@ -255,9 +249,9 @@ for i in range(0,140):#while (True):  #for l in range(0, 30):
 
     #REMARKS PRINTING
     f3.write("<tr>")
-    output = " <td>" + str(time) + "</td>" #" <td>" + str(time) + "</td>"
+    output = " <td style=\"background-color:gray\">" + str(time) + "</td>" #" <th>" + str(time) + "</th>"
     f3.write(output)
-    #f3.write("  <td>")
+    #f3.write("  <th>")
     print("time = ", time)
     print()
 
@@ -266,11 +260,10 @@ for i in range(0,140):#while (True):  #for l in range(0, 30):
         cook_empty = False
         print("none")
         stop = stop + 1
-        f3.write(format_cell(default))
-        # f3.write("  <td>none</td>")
+        f3.write("  <th>none</th>")
     else:
         print(cook[0].name, "(cook=", cook[0].time_left_for_step(), ")") #print(cook[0].name, "(cook=", cook[0].recipe[0].time, ")")
-        printthis = "   <td>" + cook[0].name + "(cook=" + str(cook[0].time_left_for_step()) + ")</td>" #####HEEEEEERE
+        printthis = "   <th>" + cook[0].name + "(cook=" + str(cook[0].time_left_for_step()) + ")</th>" #####HEEEEEERE
         cook[0].do_step()
         f3.write(printthis)
 
@@ -278,18 +271,23 @@ for i in range(0,140):#while (True):  #for l in range(0, 30):
     print("READY COLUMN")
     if len(ready) == 0:
         print("none")
-        f3.write("  <td>none</td>")
+        f3.write("  <th>none</th>")
         stop = stop + 1
     else:
-        printthis = "   <td>"
+        printthis = "   <th>"
         for m in range(len(ready)):
             print(ready[m].name, "(",ready[m].dis_step_na(),"=",ready[m].time_left_for_step(),")")
             printthis = printthis + ready[m].name + "(" + ready[m].dis_step_na() + "=" + str(ready[m].time_left_for_step()) + ") "
-        printthis = printthis + "</td>"
+        printthis = printthis + "</th>"
         f3.write(printthis)
 
     print()
     print("ASSISSTANT COLUMN")
+    #print("IIIIIN HEEEERE")
+    #if assistants_empty == True:
+        #print("none")
+        #f3.write("  <th>none</th>")
+        #stop = stop + 1 #assistants_empty, stop = False, stop + 1
     if done_assistants ==  True:
         for w in range(len(index)):
             #print(assistants)
@@ -299,33 +297,35 @@ for i in range(0,140):#while (True):  #for l in range(0, 30):
         assistants = [assistant for assistant in assistants if assistant != []]
         index = []
 
-    printthis = "<td>"
+    printthis = "   <th>"
     for m in range(len(assistants)):
         print(assistants[m].name, "(", assistants[m].dis_step_na(), "=", assistants[m].time_left_for_step(), ")")
         printthis = printthis + assistants[m].name + "(" + assistants[m].dis_step_na() + "=" + str(assistants[m].time_left_for_step()) + ") "
         #print("doing the step")
         assistants[m].do_step()
         #print("NAGDECREMENT NA")
-    printthis = printthis # 
+    printthis = printthis # + "</th>"
     if (len(assistants) == 0) or (assistants_empty == True): #assistants_empty == True:
         assistants_empty = False
         print("none")
         stop = stop + 1#h = input()
-        #printthis = "<th>none</th>"
-        f3.write("  <td>none</td>")
+        printthis = "<th>none</th>"
+        f3.write("  <th>none</th>")
         #f3.write()
     elif assistants_empty == False:
-        printthis = printthis + "</td>"
+        printthis = printthis + "</th>"
         f3.write(printthis)
 
     assistants_empty = False
+    	
 
+    print()
     print("REMARKS COLUMN")
-    printthis = "   <td>"
+    printthis = "   <th>"
     if(len(remarks_checker) == 0):
         print("none")
         printthis = printthis + "none"
-        #3.write("  <td>none")
+        #3.write("  <th>none")
         stop = stop + 1
 
     if (arrived == True):
@@ -352,7 +352,7 @@ for i in range(0,140):#while (True):  #for l in range(0, 30):
     	assistants_done, donetasks_assistants = [], []
 
     remarks_checker = []
-    printthis = printthis + "</td>"
+    printthis = printthis + "</th>"
     f3.write(printthis)
 
 
@@ -369,69 +369,9 @@ for i in range(0,140):#while (True):  #for l in range(0, 30):
     #input()
     #break
 
-html = ""
-html += "</table></html>"
-
-style = """<style>
-th {
-    font-weight: bold;
-    text-align: -internal-center;
-}
-user agent stylesheet
-td, th {
-    display: table-cell;
-    vertical-align: inherit;
-}
-user agent stylesheet
-table {
-    white-space: normal;
-    line-height: normal;
-    font-weight: normal;
-    font-size: medium;
-    font-style: normal;
-    color: -internal-quirk-inherit;
-    text-align: start;
-    font-variant: normal;
-}
-user agent stylesheet
-table {
-    display: table;
-    border-collapse: separate;
-    border-spacing: 2px;
-    border-color: grey;
-}
-
-
-table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
-    table-layout:fixed;
-    width: 100%;
-}
-
-td {
-
-    /* css-3 */
-    white-space: -o-pre-wrap; 
-    word-wrap: break-word;
-    white-space: pre-wrap; 
-    white-space: -moz-pre-wrap; 
-    white-space: -pre-wrap; 
-}
-
-td {
-    bgcolor = gray
-    
-}
-</style>
-"""
-
-f3.write(html)
-"""
 f3.write("</table>")
 f3.write("")
 f3.write("</body>")
 f3.write("</html>")
-"""
 f3.close()
 print("YAAAAAAAAY")
