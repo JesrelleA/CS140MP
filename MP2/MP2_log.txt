@@ -1,0 +1,2647 @@
+scheduler is SJF
+made task a with time 1
+made task b with time 2
+made task c with time 3
+made task a2 with sched 4
+made task b2 with sched 5
+made task c2 with sched 6
+[a1, b1, c1, a2, b2, c2]
+0
+1
+ready =  []
+
+time =  1
+COOK COLUMN
+cook length =  1
+a1
+a1 (cook= 5 )
+
+READY COLUMN
+none
+
+ASSISSTANT COLUMN
+none
+REMARKS COLUMN
+a1 arrives
+------------------------------------------------------------------------------------------
+1
+ready =  [b1]
+
+time =  2
+COOK COLUMN
+cook length =  1
+a1
+a1 (cook= 4 )
+
+READY COLUMN
+b1 ( cook = 10 )
+
+ASSISSTANT COLUMN
+none
+REMARKS COLUMN
+b1 arrives
+------------------------------------------------------------------------------------------
+1
+ready =  [b1, c1]
+
+time =  3
+COOK COLUMN
+cook length =  1
+a1
+a1 (cook= 3 )
+
+READY COLUMN
+b1 ( cook = 10 )
+c1 ( cook = 15 )
+
+ASSISSTANT COLUMN
+none
+REMARKS COLUMN
+c1 arrives
+------------------------------------------------------------------------------------------
+1
+ready =  [b1, c1, a2]
+
+time =  4
+COOK COLUMN
+cook length =  1
+a1
+a1 (cook= 2 )
+
+READY COLUMN
+b1 ( cook = 10 )
+c1 ( cook = 15 )
+a2 ( cook = 5 )
+
+ASSISSTANT COLUMN
+none
+REMARKS COLUMN
+a2 arrives
+------------------------------------------------------------------------------------------
+1
+ready =  [b1, c1, a2, b2]
+
+time =  5
+COOK COLUMN
+cook length =  1
+a1
+a1 (cook= 1 )
+
+READY COLUMN
+b1 ( cook = 10 )
+c1 ( cook = 15 )
+a2 ( cook = 5 )
+b2 ( cook = 10 )
+
+ASSISSTANT COLUMN
+none
+REMARKS COLUMN
+b2 arrives
+------------------------------------------------------------------------------------------
+INSIDE shortest_job_first FUNCTION
+ready :  [b1, c1, a2, b2, c2]
+loop
+dish name :  b1
+dish name time cook :  10
+cooktime =  10
+[inside loop] dish_to_cook1 =  b1
+loop
+dish name :  c1
+dish name time cook :  15
+cooktime =  10
+[inside loop] dish_to_cook1 =  b1
+loop
+dish name :  a2
+dish name time cook :  5
+cooktime =  10
+chosen dish =  a2
+[inside loop] dish_to_cook1 =  a2
+loop
+dish name :  b2
+dish name time cook :  10
+cooktime =  10
+[inside loop] dish_to_cook1 =  a2
+loop
+dish name :  c2
+dish name time cook :  15
+cooktime =  10
+[inside loop] dish_to_cook1 =  a2
+[to return] dish_to_cook1 =  a2
+NEW DISH IN COOK!
+winner =  a2
+COOKING THIS
+ready =  [b1, c1, b2, c2]
+
+time =  6
+COOK COLUMN
+cook length =  1
+a2
+a2 (cook= 5 )
+
+READY COLUMN
+b1 ( cook = 10 )
+c1 ( cook = 15 )
+b2 ( cook = 10 )
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+a1 ( mix = 5 )
+none
+REMARKS COLUMN
+c2 arrives
+a1 [cook done]
+a2 [chosen]
+------------------------------------------------------------------------------------------
+4
+ready =  [b1, c1, b2, c2]
+
+time =  7
+COOK COLUMN
+cook length =  1
+a2
+a2 (cook= 4 )
+
+READY COLUMN
+b1 ( cook = 10 )
+c1 ( cook = 15 )
+b2 ( cook = 10 )
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+a1 ( mix = 4 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+4
+ready =  [b1, c1, b2, c2]
+
+time =  8
+COOK COLUMN
+cook length =  1
+a2
+a2 (cook= 3 )
+
+READY COLUMN
+b1 ( cook = 10 )
+c1 ( cook = 15 )
+b2 ( cook = 10 )
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+a1 ( mix = 3 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+4
+ready =  [b1, c1, b2, c2]
+
+time =  9
+COOK COLUMN
+cook length =  1
+a2
+a2 (cook= 2 )
+
+READY COLUMN
+b1 ( cook = 10 )
+c1 ( cook = 15 )
+b2 ( cook = 10 )
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+a1 ( mix = 2 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+4
+ready =  [b1, c1, b2, c2]
+
+time =  10
+COOK COLUMN
+cook length =  1
+a2
+a2 (cook= 1 )
+
+READY COLUMN
+b1 ( cook = 10 )
+c1 ( cook = 15 )
+b2 ( cook = 10 )
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+a1 ( mix = 1 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+ASSISSTANT DONE
+INSIDE shortest_job_first FUNCTION
+ready :  [b1, c1, b2, c2, a1]
+loop
+dish name :  b1
+dish name time cook :  10
+cooktime =  10
+[inside loop] dish_to_cook1 =  b1
+loop
+dish name :  c1
+dish name time cook :  15
+cooktime =  10
+[inside loop] dish_to_cook1 =  b1
+loop
+dish name :  b2
+dish name time cook :  10
+cooktime =  10
+[inside loop] dish_to_cook1 =  b1
+loop
+dish name :  c2
+dish name time cook :  15
+cooktime =  10
+[inside loop] dish_to_cook1 =  b1
+loop
+dish name :  a1
+dish name time cook :  5
+cooktime =  10
+chosen dish =  a1
+[inside loop] dish_to_cook1 =  a1
+[to return] dish_to_cook1 =  a1
+NEW DISH IN COOK!
+winner =  a1
+COOKING THIS
+ready =  [b1, c1, b2, c2]
+
+time =  11
+COOK COLUMN
+cook length =  1
+a1
+a1 (cook= 5 )
+
+READY COLUMN
+b1 ( cook = 10 )
+c1 ( cook = 15 )
+b2 ( cook = 10 )
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+a2 ( mix = 5 )
+REMARKS COLUMN
+a2 [cook done]
+a1 [chosen]
+a1 [ mix done ]
+------------------------------------------------------------------------------------------
+1
+ready =  [b1, c1, b2, c2]
+
+time =  12
+COOK COLUMN
+cook length =  1
+a1
+a1 (cook= 4 )
+
+READY COLUMN
+b1 ( cook = 10 )
+c1 ( cook = 15 )
+b2 ( cook = 10 )
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+a2 ( mix = 4 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+1
+ready =  [b1, c1, b2, c2]
+
+time =  13
+COOK COLUMN
+cook length =  1
+a1
+a1 (cook= 3 )
+
+READY COLUMN
+b1 ( cook = 10 )
+c1 ( cook = 15 )
+b2 ( cook = 10 )
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+a2 ( mix = 3 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+1
+ready =  [b1, c1, b2, c2]
+
+time =  14
+COOK COLUMN
+cook length =  1
+a1
+a1 (cook= 2 )
+
+READY COLUMN
+b1 ( cook = 10 )
+c1 ( cook = 15 )
+b2 ( cook = 10 )
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+a2 ( mix = 2 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+1
+ready =  [b1, c1, b2, c2]
+
+time =  15
+COOK COLUMN
+cook length =  1
+a1
+a1 (cook= 1 )
+
+READY COLUMN
+b1 ( cook = 10 )
+c1 ( cook = 15 )
+b2 ( cook = 10 )
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+a2 ( mix = 1 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+ASSISSTANT DONE
+INSIDE shortest_job_first FUNCTION
+ready :  [b1, c1, b2, c2, a2]
+loop
+dish name :  b1
+dish name time cook :  10
+cooktime =  10
+[inside loop] dish_to_cook1 =  b1
+loop
+dish name :  c1
+dish name time cook :  15
+cooktime =  10
+[inside loop] dish_to_cook1 =  b1
+loop
+dish name :  b2
+dish name time cook :  10
+cooktime =  10
+[inside loop] dish_to_cook1 =  b1
+loop
+dish name :  c2
+dish name time cook :  15
+cooktime =  10
+[inside loop] dish_to_cook1 =  b1
+loop
+dish name :  a2
+dish name time cook :  5
+cooktime =  10
+chosen dish =  a2
+[inside loop] dish_to_cook1 =  a2
+[to return] dish_to_cook1 =  a2
+NEW DISH IN COOK!
+winner =  a2
+COOKING THIS
+ready =  [b1, c1, b2, c2]
+
+time =  16
+COOK COLUMN
+cook length =  1
+a2
+a2 (cook= 5 )
+
+READY COLUMN
+b1 ( cook = 10 )
+c1 ( cook = 15 )
+b2 ( cook = 10 )
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+a1 ( mix = 5 )
+REMARKS COLUMN
+a1 [cook done]
+a2 [chosen]
+a2 [ mix done ]
+------------------------------------------------------------------------------------------
+4
+ready =  [b1, c1, b2, c2]
+
+time =  17
+COOK COLUMN
+cook length =  1
+a2
+a2 (cook= 4 )
+
+READY COLUMN
+b1 ( cook = 10 )
+c1 ( cook = 15 )
+b2 ( cook = 10 )
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+a1 ( mix = 4 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+4
+ready =  [b1, c1, b2, c2]
+
+time =  18
+COOK COLUMN
+cook length =  1
+a2
+a2 (cook= 3 )
+
+READY COLUMN
+b1 ( cook = 10 )
+c1 ( cook = 15 )
+b2 ( cook = 10 )
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+a1 ( mix = 3 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+4
+ready =  [b1, c1, b2, c2]
+
+time =  19
+COOK COLUMN
+cook length =  1
+a2
+a2 (cook= 2 )
+
+READY COLUMN
+b1 ( cook = 10 )
+c1 ( cook = 15 )
+b2 ( cook = 10 )
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+a1 ( mix = 2 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+4
+ready =  [b1, c1, b2, c2]
+
+time =  20
+COOK COLUMN
+cook length =  1
+a2
+a2 (cook= 1 )
+
+READY COLUMN
+b1 ( cook = 10 )
+c1 ( cook = 15 )
+b2 ( cook = 10 )
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+a1 ( mix = 1 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+ASSISSTANT DONE
+INSIDE shortest_job_first FUNCTION
+ready :  [b1, c1, b2, c2]
+loop
+dish name :  b1
+dish name time cook :  10
+cooktime =  10
+[inside loop] dish_to_cook1 =  b1
+loop
+dish name :  c1
+dish name time cook :  15
+cooktime =  10
+[inside loop] dish_to_cook1 =  b1
+loop
+dish name :  b2
+dish name time cook :  10
+cooktime =  10
+[inside loop] dish_to_cook1 =  b1
+loop
+dish name :  c2
+dish name time cook :  15
+cooktime =  10
+[inside loop] dish_to_cook1 =  b1
+[to return] dish_to_cook1 =  b1
+NEW DISH IN COOK!
+winner =  b1
+COOKING THIS
+ready =  [c1, b2, c2]
+
+time =  21
+COOK COLUMN
+cook length =  1
+b1
+b1 (cook= 10 )
+
+READY COLUMN
+c1 ( cook = 15 )
+b2 ( cook = 10 )
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+a2 ( mix = 5 )
+REMARKS COLUMN
+a2 [cook done]
+b1 [chosen]
+a1 [ mix done ]
+------------------------------------------------------------------------------------------
+2
+ready =  [c1, b2, c2]
+
+time =  22
+COOK COLUMN
+cook length =  1
+b1
+b1 (cook= 9 )
+
+READY COLUMN
+c1 ( cook = 15 )
+b2 ( cook = 10 )
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+a2 ( mix = 4 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+2
+ready =  [c1, b2, c2]
+
+time =  23
+COOK COLUMN
+cook length =  1
+b1
+b1 (cook= 8 )
+
+READY COLUMN
+c1 ( cook = 15 )
+b2 ( cook = 10 )
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+a2 ( mix = 3 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+2
+ready =  [c1, b2, c2]
+
+time =  24
+COOK COLUMN
+cook length =  1
+b1
+b1 (cook= 7 )
+
+READY COLUMN
+c1 ( cook = 15 )
+b2 ( cook = 10 )
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+a2 ( mix = 2 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+2
+ready =  [c1, b2, c2]
+
+time =  25
+COOK COLUMN
+cook length =  1
+b1
+b1 (cook= 6 )
+
+READY COLUMN
+c1 ( cook = 15 )
+b2 ( cook = 10 )
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+a2 ( mix = 1 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+ASSISSTANT DONE
+2
+ready =  [c1, b2, c2]
+
+time =  26
+COOK COLUMN
+cook length =  1
+b1
+b1 (cook= 5 )
+
+READY COLUMN
+c1 ( cook = 15 )
+b2 ( cook = 10 )
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+REMARKS COLUMN
+a2 [ mix done ]
+------------------------------------------------------------------------------------------
+2
+ready =  [c1, b2, c2]
+
+time =  27
+COOK COLUMN
+cook length =  1
+b1
+b1 (cook= 4 )
+
+READY COLUMN
+c1 ( cook = 15 )
+b2 ( cook = 10 )
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+none
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+2
+ready =  [c1, b2, c2]
+
+time =  28
+COOK COLUMN
+cook length =  1
+b1
+b1 (cook= 3 )
+
+READY COLUMN
+c1 ( cook = 15 )
+b2 ( cook = 10 )
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+none
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+2
+ready =  [c1, b2, c2]
+
+time =  29
+COOK COLUMN
+cook length =  1
+b1
+b1 (cook= 2 )
+
+READY COLUMN
+c1 ( cook = 15 )
+b2 ( cook = 10 )
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+none
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+2
+ready =  [c1, b2, c2]
+
+time =  30
+COOK COLUMN
+cook length =  1
+b1
+b1 (cook= 1 )
+
+READY COLUMN
+c1 ( cook = 15 )
+b2 ( cook = 10 )
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+none
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+INSIDE shortest_job_first FUNCTION
+ready :  [c1, b2, c2]
+loop
+dish name :  c1
+dish name time cook :  15
+cooktime =  15
+[inside loop] dish_to_cook1 =  c1
+loop
+dish name :  b2
+dish name time cook :  10
+cooktime =  15
+chosen dish =  b2
+[inside loop] dish_to_cook1 =  b2
+loop
+dish name :  c2
+dish name time cook :  15
+cooktime =  15
+[inside loop] dish_to_cook1 =  b2
+[to return] dish_to_cook1 =  b2
+NEW DISH IN COOK!
+winner =  b2
+COOKING THIS
+ready =  [c1, c2]
+
+time =  31
+COOK COLUMN
+cook length =  1
+b2
+b2 (cook= 10 )
+
+READY COLUMN
+c1 ( cook = 15 )
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+b1 ( mix = 10 )
+none
+REMARKS COLUMN
+b1 [cook done]
+b2 [chosen]
+------------------------------------------------------------------------------------------
+5
+ready =  [c1, c2]
+
+time =  32
+COOK COLUMN
+cook length =  1
+b2
+b2 (cook= 9 )
+
+READY COLUMN
+c1 ( cook = 15 )
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+b1 ( mix = 9 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+5
+ready =  [c1, c2]
+
+time =  33
+COOK COLUMN
+cook length =  1
+b2
+b2 (cook= 8 )
+
+READY COLUMN
+c1 ( cook = 15 )
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+b1 ( mix = 8 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+5
+ready =  [c1, c2]
+
+time =  34
+COOK COLUMN
+cook length =  1
+b2
+b2 (cook= 7 )
+
+READY COLUMN
+c1 ( cook = 15 )
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+b1 ( mix = 7 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+5
+ready =  [c1, c2]
+
+time =  35
+COOK COLUMN
+cook length =  1
+b2
+b2 (cook= 6 )
+
+READY COLUMN
+c1 ( cook = 15 )
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+b1 ( mix = 6 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+5
+ready =  [c1, c2]
+
+time =  36
+COOK COLUMN
+cook length =  1
+b2
+b2 (cook= 5 )
+
+READY COLUMN
+c1 ( cook = 15 )
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+b1 ( mix = 5 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+5
+ready =  [c1, c2]
+
+time =  37
+COOK COLUMN
+cook length =  1
+b2
+b2 (cook= 4 )
+
+READY COLUMN
+c1 ( cook = 15 )
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+b1 ( mix = 4 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+5
+ready =  [c1, c2]
+
+time =  38
+COOK COLUMN
+cook length =  1
+b2
+b2 (cook= 3 )
+
+READY COLUMN
+c1 ( cook = 15 )
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+b1 ( mix = 3 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+5
+ready =  [c1, c2]
+
+time =  39
+COOK COLUMN
+cook length =  1
+b2
+b2 (cook= 2 )
+
+READY COLUMN
+c1 ( cook = 15 )
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+b1 ( mix = 2 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+5
+ready =  [c1, c2]
+
+time =  40
+COOK COLUMN
+cook length =  1
+b2
+b2 (cook= 1 )
+
+READY COLUMN
+c1 ( cook = 15 )
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+b1 ( mix = 1 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+ASSISSTANT DONE
+INSIDE shortest_job_first FUNCTION
+ready :  [c1, c2, b1]
+loop
+dish name :  c1
+dish name time cook :  15
+cooktime =  15
+[inside loop] dish_to_cook1 =  c1
+loop
+dish name :  c2
+dish name time cook :  15
+cooktime =  15
+[inside loop] dish_to_cook1 =  c1
+loop
+dish name :  b1
+dish name time cook :  10
+cooktime =  15
+chosen dish =  b1
+[inside loop] dish_to_cook1 =  b1
+[to return] dish_to_cook1 =  b1
+NEW DISH IN COOK!
+winner =  b1
+COOKING THIS
+ready =  [c1, c2]
+
+time =  41
+COOK COLUMN
+cook length =  1
+b1
+b1 (cook= 10 )
+
+READY COLUMN
+c1 ( cook = 15 )
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+b2 ( mix = 10 )
+REMARKS COLUMN
+b2 [cook done]
+b1 [chosen]
+b1 [ mix done ]
+------------------------------------------------------------------------------------------
+2
+ready =  [c1, c2]
+
+time =  42
+COOK COLUMN
+cook length =  1
+b1
+b1 (cook= 9 )
+
+READY COLUMN
+c1 ( cook = 15 )
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+b2 ( mix = 9 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+2
+ready =  [c1, c2]
+
+time =  43
+COOK COLUMN
+cook length =  1
+b1
+b1 (cook= 8 )
+
+READY COLUMN
+c1 ( cook = 15 )
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+b2 ( mix = 8 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+2
+ready =  [c1, c2]
+
+time =  44
+COOK COLUMN
+cook length =  1
+b1
+b1 (cook= 7 )
+
+READY COLUMN
+c1 ( cook = 15 )
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+b2 ( mix = 7 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+2
+ready =  [c1, c2]
+
+time =  45
+COOK COLUMN
+cook length =  1
+b1
+b1 (cook= 6 )
+
+READY COLUMN
+c1 ( cook = 15 )
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+b2 ( mix = 6 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+2
+ready =  [c1, c2]
+
+time =  46
+COOK COLUMN
+cook length =  1
+b1
+b1 (cook= 5 )
+
+READY COLUMN
+c1 ( cook = 15 )
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+b2 ( mix = 5 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+2
+ready =  [c1, c2]
+
+time =  47
+COOK COLUMN
+cook length =  1
+b1
+b1 (cook= 4 )
+
+READY COLUMN
+c1 ( cook = 15 )
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+b2 ( mix = 4 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+2
+ready =  [c1, c2]
+
+time =  48
+COOK COLUMN
+cook length =  1
+b1
+b1 (cook= 3 )
+
+READY COLUMN
+c1 ( cook = 15 )
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+b2 ( mix = 3 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+2
+ready =  [c1, c2]
+
+time =  49
+COOK COLUMN
+cook length =  1
+b1
+b1 (cook= 2 )
+
+READY COLUMN
+c1 ( cook = 15 )
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+b2 ( mix = 2 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+2
+ready =  [c1, c2]
+
+time =  50
+COOK COLUMN
+cook length =  1
+b1
+b1 (cook= 1 )
+
+READY COLUMN
+c1 ( cook = 15 )
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+b2 ( mix = 1 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+ASSISSTANT DONE
+INSIDE shortest_job_first FUNCTION
+ready :  [c1, c2, b2]
+loop
+dish name :  c1
+dish name time cook :  15
+cooktime =  15
+[inside loop] dish_to_cook1 =  c1
+loop
+dish name :  c2
+dish name time cook :  15
+cooktime =  15
+[inside loop] dish_to_cook1 =  c1
+loop
+dish name :  b2
+dish name time cook :  10
+cooktime =  15
+chosen dish =  b2
+[inside loop] dish_to_cook1 =  b2
+[to return] dish_to_cook1 =  b2
+NEW DISH IN COOK!
+winner =  b2
+COOKING THIS
+ready =  [c1, c2]
+
+time =  51
+COOK COLUMN
+cook length =  1
+b2
+b2 (cook= 10 )
+
+READY COLUMN
+c1 ( cook = 15 )
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+b1 ( mix = 10 )
+REMARKS COLUMN
+b1 [cook done]
+b2 [chosen]
+b2 [ mix done ]
+------------------------------------------------------------------------------------------
+5
+ready =  [c1, c2]
+
+time =  52
+COOK COLUMN
+cook length =  1
+b2
+b2 (cook= 9 )
+
+READY COLUMN
+c1 ( cook = 15 )
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+b1 ( mix = 9 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+5
+ready =  [c1, c2]
+
+time =  53
+COOK COLUMN
+cook length =  1
+b2
+b2 (cook= 8 )
+
+READY COLUMN
+c1 ( cook = 15 )
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+b1 ( mix = 8 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+5
+ready =  [c1, c2]
+
+time =  54
+COOK COLUMN
+cook length =  1
+b2
+b2 (cook= 7 )
+
+READY COLUMN
+c1 ( cook = 15 )
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+b1 ( mix = 7 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+5
+ready =  [c1, c2]
+
+time =  55
+COOK COLUMN
+cook length =  1
+b2
+b2 (cook= 6 )
+
+READY COLUMN
+c1 ( cook = 15 )
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+b1 ( mix = 6 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+5
+ready =  [c1, c2]
+
+time =  56
+COOK COLUMN
+cook length =  1
+b2
+b2 (cook= 5 )
+
+READY COLUMN
+c1 ( cook = 15 )
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+b1 ( mix = 5 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+5
+ready =  [c1, c2]
+
+time =  57
+COOK COLUMN
+cook length =  1
+b2
+b2 (cook= 4 )
+
+READY COLUMN
+c1 ( cook = 15 )
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+b1 ( mix = 4 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+5
+ready =  [c1, c2]
+
+time =  58
+COOK COLUMN
+cook length =  1
+b2
+b2 (cook= 3 )
+
+READY COLUMN
+c1 ( cook = 15 )
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+b1 ( mix = 3 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+5
+ready =  [c1, c2]
+
+time =  59
+COOK COLUMN
+cook length =  1
+b2
+b2 (cook= 2 )
+
+READY COLUMN
+c1 ( cook = 15 )
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+b1 ( mix = 2 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+5
+ready =  [c1, c2]
+
+time =  60
+COOK COLUMN
+cook length =  1
+b2
+b2 (cook= 1 )
+
+READY COLUMN
+c1 ( cook = 15 )
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+b1 ( mix = 1 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+ASSISSTANT DONE
+INSIDE shortest_job_first FUNCTION
+ready :  [c1, c2]
+loop
+dish name :  c1
+dish name time cook :  15
+cooktime =  15
+[inside loop] dish_to_cook1 =  c1
+loop
+dish name :  c2
+dish name time cook :  15
+cooktime =  15
+[inside loop] dish_to_cook1 =  c1
+[to return] dish_to_cook1 =  c1
+NEW DISH IN COOK!
+winner =  c1
+COOKING THIS
+ready =  [c2]
+
+time =  61
+COOK COLUMN
+cook length =  1
+c1
+c1 (cook= 15 )
+
+READY COLUMN
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+b2 ( mix = 10 )
+REMARKS COLUMN
+b2 [cook done]
+c1 [chosen]
+b1 [ mix done ]
+------------------------------------------------------------------------------------------
+3
+ready =  [c2]
+
+time =  62
+COOK COLUMN
+cook length =  1
+c1
+c1 (cook= 14 )
+
+READY COLUMN
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+b2 ( mix = 9 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+3
+ready =  [c2]
+
+time =  63
+COOK COLUMN
+cook length =  1
+c1
+c1 (cook= 13 )
+
+READY COLUMN
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+b2 ( mix = 8 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+3
+ready =  [c2]
+
+time =  64
+COOK COLUMN
+cook length =  1
+c1
+c1 (cook= 12 )
+
+READY COLUMN
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+b2 ( mix = 7 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+3
+ready =  [c2]
+
+time =  65
+COOK COLUMN
+cook length =  1
+c1
+c1 (cook= 11 )
+
+READY COLUMN
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+b2 ( mix = 6 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+3
+ready =  [c2]
+
+time =  66
+COOK COLUMN
+cook length =  1
+c1
+c1 (cook= 10 )
+
+READY COLUMN
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+b2 ( mix = 5 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+3
+ready =  [c2]
+
+time =  67
+COOK COLUMN
+cook length =  1
+c1
+c1 (cook= 9 )
+
+READY COLUMN
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+b2 ( mix = 4 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+3
+ready =  [c2]
+
+time =  68
+COOK COLUMN
+cook length =  1
+c1
+c1 (cook= 8 )
+
+READY COLUMN
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+b2 ( mix = 3 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+3
+ready =  [c2]
+
+time =  69
+COOK COLUMN
+cook length =  1
+c1
+c1 (cook= 7 )
+
+READY COLUMN
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+b2 ( mix = 2 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+3
+ready =  [c2]
+
+time =  70
+COOK COLUMN
+cook length =  1
+c1
+c1 (cook= 6 )
+
+READY COLUMN
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+b2 ( mix = 1 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+ASSISSTANT DONE
+3
+ready =  [c2]
+
+time =  71
+COOK COLUMN
+cook length =  1
+c1
+c1 (cook= 5 )
+
+READY COLUMN
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+REMARKS COLUMN
+b2 [ mix done ]
+------------------------------------------------------------------------------------------
+3
+ready =  [c2]
+
+time =  72
+COOK COLUMN
+cook length =  1
+c1
+c1 (cook= 4 )
+
+READY COLUMN
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+none
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+3
+ready =  [c2]
+
+time =  73
+COOK COLUMN
+cook length =  1
+c1
+c1 (cook= 3 )
+
+READY COLUMN
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+none
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+3
+ready =  [c2]
+
+time =  74
+COOK COLUMN
+cook length =  1
+c1
+c1 (cook= 2 )
+
+READY COLUMN
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+none
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+3
+ready =  [c2]
+
+time =  75
+COOK COLUMN
+cook length =  1
+c1
+c1 (cook= 1 )
+
+READY COLUMN
+c2 ( cook = 15 )
+
+ASSISSTANT COLUMN
+none
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+INSIDE shortest_job_first FUNCTION
+ready :  [c2]
+loop
+dish name :  c2
+dish name time cook :  15
+cooktime =  15
+[inside loop] dish_to_cook1 =  c2
+[to return] dish_to_cook1 =  c2
+NEW DISH IN COOK!
+winner =  c2
+COOKING THIS
+ready =  []
+
+time =  76
+COOK COLUMN
+cook length =  1
+c2
+c2 (cook= 15 )
+
+READY COLUMN
+none
+
+ASSISSTANT COLUMN
+c1 ( mix = 15 )
+none
+REMARKS COLUMN
+c1 [cook done]
+c2 [chosen]
+------------------------------------------------------------------------------------------
+6
+ready =  []
+
+time =  77
+COOK COLUMN
+cook length =  1
+c2
+c2 (cook= 14 )
+
+READY COLUMN
+none
+
+ASSISSTANT COLUMN
+c1 ( mix = 14 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+6
+ready =  []
+
+time =  78
+COOK COLUMN
+cook length =  1
+c2
+c2 (cook= 13 )
+
+READY COLUMN
+none
+
+ASSISSTANT COLUMN
+c1 ( mix = 13 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+6
+ready =  []
+
+time =  79
+COOK COLUMN
+cook length =  1
+c2
+c2 (cook= 12 )
+
+READY COLUMN
+none
+
+ASSISSTANT COLUMN
+c1 ( mix = 12 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+6
+ready =  []
+
+time =  80
+COOK COLUMN
+cook length =  1
+c2
+c2 (cook= 11 )
+
+READY COLUMN
+none
+
+ASSISSTANT COLUMN
+c1 ( mix = 11 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+6
+ready =  []
+
+time =  81
+COOK COLUMN
+cook length =  1
+c2
+c2 (cook= 10 )
+
+READY COLUMN
+none
+
+ASSISSTANT COLUMN
+c1 ( mix = 10 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+6
+ready =  []
+
+time =  82
+COOK COLUMN
+cook length =  1
+c2
+c2 (cook= 9 )
+
+READY COLUMN
+none
+
+ASSISSTANT COLUMN
+c1 ( mix = 9 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+6
+ready =  []
+
+time =  83
+COOK COLUMN
+cook length =  1
+c2
+c2 (cook= 8 )
+
+READY COLUMN
+none
+
+ASSISSTANT COLUMN
+c1 ( mix = 8 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+6
+ready =  []
+
+time =  84
+COOK COLUMN
+cook length =  1
+c2
+c2 (cook= 7 )
+
+READY COLUMN
+none
+
+ASSISSTANT COLUMN
+c1 ( mix = 7 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+6
+ready =  []
+
+time =  85
+COOK COLUMN
+cook length =  1
+c2
+c2 (cook= 6 )
+
+READY COLUMN
+none
+
+ASSISSTANT COLUMN
+c1 ( mix = 6 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+6
+ready =  []
+
+time =  86
+COOK COLUMN
+cook length =  1
+c2
+c2 (cook= 5 )
+
+READY COLUMN
+none
+
+ASSISSTANT COLUMN
+c1 ( mix = 5 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+6
+ready =  []
+
+time =  87
+COOK COLUMN
+cook length =  1
+c2
+c2 (cook= 4 )
+
+READY COLUMN
+none
+
+ASSISSTANT COLUMN
+c1 ( mix = 4 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+6
+ready =  []
+
+time =  88
+COOK COLUMN
+cook length =  1
+c2
+c2 (cook= 3 )
+
+READY COLUMN
+none
+
+ASSISSTANT COLUMN
+c1 ( mix = 3 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+6
+ready =  []
+
+time =  89
+COOK COLUMN
+cook length =  1
+c2
+c2 (cook= 2 )
+
+READY COLUMN
+none
+
+ASSISSTANT COLUMN
+c1 ( mix = 2 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+6
+ready =  []
+
+time =  90
+COOK COLUMN
+cook length =  1
+c2
+c2 (cook= 1 )
+
+READY COLUMN
+none
+
+ASSISSTANT COLUMN
+c1 ( mix = 1 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+ASSISSTANT DONE
+INSIDE shortest_job_first FUNCTION
+ready :  [c1]
+loop
+dish name :  c1
+dish name time cook :  15
+cooktime =  15
+[inside loop] dish_to_cook1 =  c1
+[to return] dish_to_cook1 =  c1
+NEW DISH IN COOK!
+winner =  c1
+COOKING THIS
+ready =  []
+
+time =  91
+COOK COLUMN
+cook length =  1
+c1
+c1 (cook= 15 )
+
+READY COLUMN
+none
+
+ASSISSTANT COLUMN
+c2 ( mix = 15 )
+REMARKS COLUMN
+c2 [cook done]
+c1 [chosen]
+c1 [ mix done ]
+------------------------------------------------------------------------------------------
+3
+ready =  []
+
+time =  92
+COOK COLUMN
+cook length =  1
+c1
+c1 (cook= 14 )
+
+READY COLUMN
+none
+
+ASSISSTANT COLUMN
+c2 ( mix = 14 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+3
+ready =  []
+
+time =  93
+COOK COLUMN
+cook length =  1
+c1
+c1 (cook= 13 )
+
+READY COLUMN
+none
+
+ASSISSTANT COLUMN
+c2 ( mix = 13 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+3
+ready =  []
+
+time =  94
+COOK COLUMN
+cook length =  1
+c1
+c1 (cook= 12 )
+
+READY COLUMN
+none
+
+ASSISSTANT COLUMN
+c2 ( mix = 12 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+3
+ready =  []
+
+time =  95
+COOK COLUMN
+cook length =  1
+c1
+c1 (cook= 11 )
+
+READY COLUMN
+none
+
+ASSISSTANT COLUMN
+c2 ( mix = 11 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+3
+ready =  []
+
+time =  96
+COOK COLUMN
+cook length =  1
+c1
+c1 (cook= 10 )
+
+READY COLUMN
+none
+
+ASSISSTANT COLUMN
+c2 ( mix = 10 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+3
+ready =  []
+
+time =  97
+COOK COLUMN
+cook length =  1
+c1
+c1 (cook= 9 )
+
+READY COLUMN
+none
+
+ASSISSTANT COLUMN
+c2 ( mix = 9 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+3
+ready =  []
+
+time =  98
+COOK COLUMN
+cook length =  1
+c1
+c1 (cook= 8 )
+
+READY COLUMN
+none
+
+ASSISSTANT COLUMN
+c2 ( mix = 8 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+3
+ready =  []
+
+time =  99
+COOK COLUMN
+cook length =  1
+c1
+c1 (cook= 7 )
+
+READY COLUMN
+none
+
+ASSISSTANT COLUMN
+c2 ( mix = 7 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+3
+ready =  []
+
+time =  100
+COOK COLUMN
+cook length =  1
+c1
+c1 (cook= 6 )
+
+READY COLUMN
+none
+
+ASSISSTANT COLUMN
+c2 ( mix = 6 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+3
+ready =  []
+
+time =  101
+COOK COLUMN
+cook length =  1
+c1
+c1 (cook= 5 )
+
+READY COLUMN
+none
+
+ASSISSTANT COLUMN
+c2 ( mix = 5 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+3
+ready =  []
+
+time =  102
+COOK COLUMN
+cook length =  1
+c1
+c1 (cook= 4 )
+
+READY COLUMN
+none
+
+ASSISSTANT COLUMN
+c2 ( mix = 4 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+3
+ready =  []
+
+time =  103
+COOK COLUMN
+cook length =  1
+c1
+c1 (cook= 3 )
+
+READY COLUMN
+none
+
+ASSISSTANT COLUMN
+c2 ( mix = 3 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+3
+ready =  []
+
+time =  104
+COOK COLUMN
+cook length =  1
+c1
+c1 (cook= 2 )
+
+READY COLUMN
+none
+
+ASSISSTANT COLUMN
+c2 ( mix = 2 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+3
+ready =  []
+
+time =  105
+COOK COLUMN
+cook length =  1
+c1
+c1 (cook= 1 )
+
+READY COLUMN
+none
+
+ASSISSTANT COLUMN
+c2 ( mix = 1 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+ASSISSTANT DONE
+INSIDE shortest_job_first FUNCTION
+ready :  [c2]
+loop
+dish name :  c2
+dish name time cook :  15
+cooktime =  15
+[inside loop] dish_to_cook1 =  c2
+[to return] dish_to_cook1 =  c2
+NEW DISH IN COOK!
+winner =  c2
+COOKING THIS
+ready =  []
+
+time =  106
+COOK COLUMN
+cook length =  1
+c2
+c2 (cook= 15 )
+
+READY COLUMN
+none
+
+ASSISSTANT COLUMN
+c1 ( mix = 15 )
+REMARKS COLUMN
+c1 [cook done]
+c2 [chosen]
+c2 [ mix done ]
+------------------------------------------------------------------------------------------
+6
+ready =  []
+
+time =  107
+COOK COLUMN
+cook length =  1
+c2
+c2 (cook= 14 )
+
+READY COLUMN
+none
+
+ASSISSTANT COLUMN
+c1 ( mix = 14 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+6
+ready =  []
+
+time =  108
+COOK COLUMN
+cook length =  1
+c2
+c2 (cook= 13 )
+
+READY COLUMN
+none
+
+ASSISSTANT COLUMN
+c1 ( mix = 13 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+6
+ready =  []
+
+time =  109
+COOK COLUMN
+cook length =  1
+c2
+c2 (cook= 12 )
+
+READY COLUMN
+none
+
+ASSISSTANT COLUMN
+c1 ( mix = 12 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+6
+ready =  []
+
+time =  110
+COOK COLUMN
+cook length =  1
+c2
+c2 (cook= 11 )
+
+READY COLUMN
+none
+
+ASSISSTANT COLUMN
+c1 ( mix = 11 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+6
+ready =  []
+
+time =  111
+COOK COLUMN
+cook length =  1
+c2
+c2 (cook= 10 )
+
+READY COLUMN
+none
+
+ASSISSTANT COLUMN
+c1 ( mix = 10 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+6
+ready =  []
+
+time =  112
+COOK COLUMN
+cook length =  1
+c2
+c2 (cook= 9 )
+
+READY COLUMN
+none
+
+ASSISSTANT COLUMN
+c1 ( mix = 9 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+6
+ready =  []
+
+time =  113
+COOK COLUMN
+cook length =  1
+c2
+c2 (cook= 8 )
+
+READY COLUMN
+none
+
+ASSISSTANT COLUMN
+c1 ( mix = 8 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+6
+ready =  []
+
+time =  114
+COOK COLUMN
+cook length =  1
+c2
+c2 (cook= 7 )
+
+READY COLUMN
+none
+
+ASSISSTANT COLUMN
+c1 ( mix = 7 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+6
+ready =  []
+
+time =  115
+COOK COLUMN
+cook length =  1
+c2
+c2 (cook= 6 )
+
+READY COLUMN
+none
+
+ASSISSTANT COLUMN
+c1 ( mix = 6 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+6
+ready =  []
+
+time =  116
+COOK COLUMN
+cook length =  1
+c2
+c2 (cook= 5 )
+
+READY COLUMN
+none
+
+ASSISSTANT COLUMN
+c1 ( mix = 5 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+6
+ready =  []
+
+time =  117
+COOK COLUMN
+cook length =  1
+c2
+c2 (cook= 4 )
+
+READY COLUMN
+none
+
+ASSISSTANT COLUMN
+c1 ( mix = 4 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+6
+ready =  []
+
+time =  118
+COOK COLUMN
+cook length =  1
+c2
+c2 (cook= 3 )
+
+READY COLUMN
+none
+
+ASSISSTANT COLUMN
+c1 ( mix = 3 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+6
+ready =  []
+
+time =  119
+COOK COLUMN
+cook length =  1
+c2
+c2 (cook= 2 )
+
+READY COLUMN
+none
+
+ASSISSTANT COLUMN
+c1 ( mix = 2 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+6
+ready =  []
+
+time =  120
+COOK COLUMN
+cook length =  1
+c2
+c2 (cook= 1 )
+
+READY COLUMN
+none
+
+ASSISSTANT COLUMN
+c1 ( mix = 1 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+ASSISSTANT DONE
+ready =  []
+
+time =  121
+COOK COLUMN
+none
+
+READY COLUMN
+none
+
+ASSISSTANT COLUMN
+c2 ( mix = 15 )
+REMARKS COLUMN
+c2 [cook done]
+c1 [ mix done ]
+------------------------------------------------------------------------------------------
+ready =  []
+
+time =  122
+COOK COLUMN
+none
+
+READY COLUMN
+none
+
+ASSISSTANT COLUMN
+c2 ( mix = 14 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+ready =  []
+
+time =  123
+COOK COLUMN
+none
+
+READY COLUMN
+none
+
+ASSISSTANT COLUMN
+c2 ( mix = 13 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+ready =  []
+
+time =  124
+COOK COLUMN
+none
+
+READY COLUMN
+none
+
+ASSISSTANT COLUMN
+c2 ( mix = 12 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+ready =  []
+
+time =  125
+COOK COLUMN
+none
+
+READY COLUMN
+none
+
+ASSISSTANT COLUMN
+c2 ( mix = 11 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+ready =  []
+
+time =  126
+COOK COLUMN
+none
+
+READY COLUMN
+none
+
+ASSISSTANT COLUMN
+c2 ( mix = 10 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+ready =  []
+
+time =  127
+COOK COLUMN
+none
+
+READY COLUMN
+none
+
+ASSISSTANT COLUMN
+c2 ( mix = 9 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+ready =  []
+
+time =  128
+COOK COLUMN
+none
+
+READY COLUMN
+none
+
+ASSISSTANT COLUMN
+c2 ( mix = 8 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+ready =  []
+
+time =  129
+COOK COLUMN
+none
+
+READY COLUMN
+none
+
+ASSISSTANT COLUMN
+c2 ( mix = 7 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+ready =  []
+
+time =  130
+COOK COLUMN
+none
+
+READY COLUMN
+none
+
+ASSISSTANT COLUMN
+c2 ( mix = 6 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+ready =  []
+
+time =  131
+COOK COLUMN
+none
+
+READY COLUMN
+none
+
+ASSISSTANT COLUMN
+c2 ( mix = 5 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+ready =  []
+
+time =  132
+COOK COLUMN
+none
+
+READY COLUMN
+none
+
+ASSISSTANT COLUMN
+c2 ( mix = 4 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+ready =  []
+
+time =  133
+COOK COLUMN
+none
+
+READY COLUMN
+none
+
+ASSISSTANT COLUMN
+c2 ( mix = 3 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+ready =  []
+
+time =  134
+COOK COLUMN
+none
+
+READY COLUMN
+none
+
+ASSISSTANT COLUMN
+c2 ( mix = 2 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+ready =  []
+
+time =  135
+COOK COLUMN
+none
+
+READY COLUMN
+none
+
+ASSISSTANT COLUMN
+c2 ( mix = 1 )
+REMARKS COLUMN
+none
+------------------------------------------------------------------------------------------
+ASSISSTANT DONE
+ready =  []
+
+time =  136
+COOK COLUMN
+none
+
+READY COLUMN
+none
+
+ASSISSTANT COLUMN
+REMARKS COLUMN
+c2 [ mix done ]
+------------------------------------------------------------------------------------------
+ready =  []
+
+time =  137
+COOK COLUMN
+none
+
+READY COLUMN
+none
+
+ASSISSTANT COLUMN
+none
+REMARKS COLUMN
+none
+YAAAAAAAAY

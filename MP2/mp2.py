@@ -1,4 +1,4 @@
-#oks SJF 
+#oks SJF
 #walang error pero nagstostop sa maling time sa FCFS
 
 def first_come_first_serve(ready):
@@ -25,7 +25,7 @@ def shortest_job_first(ready):
                 dish_to_cook1 = ready[counter]
                 print("chosen dish = ", dish_to_cook1)
                 p = counter
-            
+
         print("[inside loop] dish_to_cook1 = ", dish_to_cook1.name)
 
     ready.pop(p)
@@ -86,6 +86,12 @@ dishlist = []
 filename = "Tasklist.txt"
 file = open(filename, "r")
 
+scheduler = file.readline().split()[0]
+print("scheduler is", scheduler)
+"""
+    PUT CODE HERE FOR CHECKING WHICH SCHEDULING ALGO IT IS
+"""
+
 for line in file:
     task_i       = line.split()[0]
     task_sched_i = int(line.split()[1])
@@ -93,7 +99,7 @@ for line in file:
     if task_i not in tasks_count:    # for 1st encounter with task
         tasks_count.update({task_i : 1})
         tasks.update({ task_sched_i : str(task_i+"1")})
-        
+
         task = Recipe(str(task_i+"1"), task_sched_i)
         print("made task", task_i, "with time", task_sched_i)
         dishlist.append(task)
@@ -101,7 +107,7 @@ for line in file:
         tasks_count.update({task_i : tasks_count[task_i]+1})
         task_v = task_i + str(tasks_count[task_i])
         tasks.update({ task_sched_i : task_v})
-        
+
         task = Recipe(task_v, task_sched_i)
         print("made task", task_v, "with sched", task_sched_i)
         dishlist.append(task)
@@ -111,7 +117,7 @@ time = 0
 row  = 0
 
 arrived_dish = []
-cook         = [] 
+cook         = []
 ready        = []
 assistants   = []
 
@@ -136,13 +142,13 @@ donetasks_assistants = []
 index                = []
 remarks_checker      = []
 
-output_html = open("output.html", "w")
+output_html = open("outputSJF1.html", "w")
 
 headers = ["Time", "Cook", "Ready", "Assistants", "Remarks"]
 default = "none"
 
 # formats header
-html = "<html><table border=\"1\">"     
+html = "<html><table border=\"1\">"
 for state in headers:
     html += "<th>{}</th>".format(state)
 html += "</tr>"
@@ -150,11 +156,12 @@ output_html.write(html)
 
 print(len(remarks_checker))
 #print(len(cook) != 0) and (len(ready) != 0) and (len(assistants) != 0) and (len(remarks_checker) != 0)
+# FIRST COME FIRST SERVE
 for i in range(0,140):#while (True):  #for l in range(0, 30):
     time = time + 1
-    if time in tasks: 
+    if time in tasks:
         task_filename = ''.join(i for i in tasks[time] if not i.isdigit()) + ".txt" # gets file
-        task_file     = open(task_filename, "r")  
+        task_file     = open(task_filename, "r")
 
         line_num = 0
         for line in task_file:
@@ -165,26 +172,23 @@ for i in range(0,140):#while (True):  #for l in range(0, 30):
             line_num += 1
 
     if(len(dishlist)!=0):
-        if dishlist[0].time == time: 
+        if dishlist[0].time == time:
             arrived = True
             remarks_checker.append(1)
             remarks_dish_arrived = dishlist[0]    #temp holder of the dish that arrived and also for printing purposes
             arrived_dish.append(dishlist[0])
             task = remarks_dish_arrived.dis_step_na()
-            dishlist.pop(0) 
+            dishlist.pop(0)
             #print(task)
     if (arrived == True) and (task == "cook"): #if (len(dishlist)!=0) and (task == "cook"):
         if len(cook) == 0 and len(ready) == 0:  #as in walang dish na cino-cook and nagwaiwait para macook hehe so enter na agad sa 'Cook' column
             cook.append(remarks_dish_arrived)
-        else: 
+        else:
            ready.append(remarks_dish_arrived) #will enter the ready queue since there might still be a dish in the 'cook'
     elif (arrived == True) and (task != "cook"): #elif (len(dishlist)!=0) and (task != "cook"):
         assistants.append(remarks_dish_arrived)  #not 'cook' yung step so will enter the assistants
 
-    
-        
-
-    #UPDATE/CHECK WHAT IS HAPPENING IN THE ASSISSTANT COLUMN
+    # UPDATE/CHECK WHAT IS HAPPENING IN THE ASSISSTANT COLUMN
     if len(assistants) == 0:
         assistants_empty = True
 
@@ -209,8 +213,8 @@ for i in range(0,140):#while (True):  #for l in range(0, 30):
                         print("HERE WOOOH")
                         #cook[0] = assistants[i]
                         win = True
-                        winner = first_come_first_serve(ready) #if schedule == "FCFS"
-                        #winner = shortest_job_first(ready) #if schedule == "SJF"
+                        #winner = first_come_first_serve(ready) #if schedule == "FCFS"
+                        winner = shortest_job_first(ready) #if schedule == "SJF"
                         cook.append(winner)
                         done_cooking1 = winner
                         print("NEW DISH IN COOK!")
@@ -234,7 +238,7 @@ for i in range(0,140):#while (True):  #for l in range(0, 30):
     #UPDATE/CHECK WHAT IS HAPPENING IN COOK COLUMN
     if len(cook) != 0: #may dish sa loob ni cook
         if cook[0].time_left_for_step() != 0:
-            remaining_time = cook[0].time #cook[0].time_left_for_step() 
+            remaining_time = cook[0].time #cook[0].time_left_for_step()
             print(remaining_time)
             if remaining_time == 0:
                 #print("DONE COOKING")
@@ -273,9 +277,9 @@ for i in range(0,140):#while (True):  #for l in range(0, 30):
                     assistants.append(cook[0])
                     done_cooking = cook[0]
             cook.pop(0)
-        
+
     if len(cook) == 0 and len(ready) == 0: #wala ng icoo-cook
-        cook_empty = True  #still part of the algo that checks what should be cooked next   
+        cook_empty = True  #still part of the algo that checks what should be cooked next
 
     if len(cook) == 0 and len(ready) != 0:
         #INSERT ALGO THAT GETS THE DISH WITH THE HIGHEST PRIORITY
@@ -287,8 +291,8 @@ for i in range(0,140):#while (True):  #for l in range(0, 30):
             #done_cooking1 = winner
             #print(done_cooking1.name, "[chosen]")
             win = True
-            winner = first_come_first_serve(ready) #if schedule == "FCFS"
-            #winner = shortest_job_first(ready) #if schedule == "SJF"
+            #winner = first_come_first_serve(ready) #if schedule == "FCFS"
+            winner = shortest_job_first(ready) #if schedule == "SJF"
             cook.append(winner)
             done_cooking1 = winner
             print("NEW DISH IN COOK!")
@@ -333,8 +337,8 @@ for i in range(0,140):#while (True):  #for l in range(0, 30):
     else:
         for m in range(len(ready)):
             print(ready[m].name, "(",ready[m].dis_step_na(),"=",ready[m].time_left_for_step(),")")
-            ready_str = ready_str + ready[m].name + "(" + ready[m].dis_step_na() + "=" + str(ready[m].time_left_for_step()) + ")"   
-        
+            ready_str = ready_str + ready[m].name + "(" + ready[m].dis_step_na() + "=" + str(ready[m].time_left_for_step()) + ")"
+
         output_html.write(format_cell(ready_str))
 
     print()
@@ -352,18 +356,18 @@ for i in range(0,140):#while (True):  #for l in range(0, 30):
         print(assistants[m].name, "(", assistants[m].dis_step_na(), "=", assistants[m].time_left_for_step(), ")")
         # printthis = printthis + assistants[m].name + "(" + assistants[m].dis_step_na() + "=" + str(assistants[m].time_left_for_step()) + ") "
         assistants_str = assistants[m].name + "(" + assistants[m].dis_step_na() + "=" + str(assistants[m].time_left_for_step()) + ") "
-        
+
         #print("doing the step")
         assistants[m].do_step()
         #print("NAGDECREMENT NA")
 
-    if assistants_empty: 
+    if assistants_empty:
         assistants_empty = False
         print("none")
         row = row + 1
 
         #assistants_str = default
-    
+
     output_html.write(format_cell(assistants_str))
     assistants_empty = False
 
@@ -376,7 +380,7 @@ for i in range(0,140):#while (True):  #for l in range(0, 30):
             print(remarks_dish_arrived.name, "arrives")
             remarks = remarks + remarks_dish_arrived.name + "[arrives]. "
             #output_html.write(printthis)
-       
+
         if cooked_done:
             cooked_done = False
             print(done_cooking.name,"[cook done]")
@@ -446,7 +450,7 @@ table {
 html {
     background-color: silver;
 
-    
+
 }
 
 table, th, td {
@@ -461,11 +465,11 @@ td {
     vertical-align:top
 
     /* css-3 */
-    white-space: -o-pre-wrap; 
+    white-space: -o-pre-wrap;
     word-wrap: break-word;
-    white-space: pre-wrap; 
-    white-space: -moz-pre-wrap; 
-    white-space: -pre-wrap; 
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
 }
 
 th{
