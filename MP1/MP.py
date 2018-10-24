@@ -106,6 +106,7 @@ output_html = open("output.html", "w")
 
 headers = ["Time", "Cook", "Ready", "Assistants", "Remarks"]
 default = "none"
+finish_na = False
 
 # formats header
 html = "<html><table border=\"1\">"     
@@ -168,6 +169,9 @@ for i in range(0,140):#while (True):  #for l in range(0, 30):
                         #print("something task")
                         assistants.append(cook[0])
                         done_cooking = cook[0]
+
+                        if cook[0].dis_step_na() == NULL:
+                            finish_na = True
                     #cook[0].recipe.pop(0) #delete the dish in 'cook' since its cooked hehe
                 cook.pop(0)
 
@@ -274,28 +278,31 @@ for i in range(0,140):#while (True):  #for l in range(0, 30):
 
     print()
 
-    assistants_str = default
+    
 
     print("ASSISSTANT COLUMN")
+    assistants_str = default
     if done_assistants ==  True:
         for w in range(len(index)):
             assistants[index[w]] = []
         assistants = [assistant for assistant in assistants if assistant != []]
         index = []
 
-    for m in range(len(assistants)):
-        print(assistants[m].name, "(", assistants[m].dis_step_na(), "=", assistants[m].time_left_for_step(), ")")
-        # printthis = printthis + assistants[m].name + "(" + assistants[m].dis_step_na() + "=" + str(assistants[m].time_left_for_step()) + ") "
-        assistants_str = assistants[m].name + "(" + assistants[m].dis_step_na() + "=" + str(assistants[m].time_left_for_step()) + ") "
-        
-        #print("doing the step")
-        assistants[m].do_step()
-        #print("NAGDECREMENT NA")
-
-    if assistants_empty: 
+    if len(assistants) > 0:
+        assistants_str = ""
+        for m in range(len(assistants)):
+            print(assistants[m].name, "(", assistants[m].dis_step_na(), "=", assistants[m].time_left_for_step(), ")")
+            # printthis = printthis + assistants[m].name + "(" + assistants[m].dis_step_na() + "=" + str(assistants[m].time_left_for_step()) + ") "
+            assistants_str = assistants_str + assistants[m].name + "(" + assistants[m].dis_step_na() + "=" + str(assistants[m].time_left_for_step()) + ") "
+            
+            #print("doing the step")
+            assistants[m].do_step()
+            #print("NAGDECREMENT NA")
+    elif assistants_empty: 
         assistants_empty = False
         print("none")
         row = row + 1
+        assistants_str = default
 
         #assistants_str = default
     
@@ -326,6 +333,10 @@ for i in range(0,140):#while (True):  #for l in range(0, 30):
             for m in range(len(assistants_done)):
                 print(assistants_done[m].name, "[", donetasks_assistants[m], "done ]")
                 remarks = remarks + assistants_done[m].name + "[" + donetasks_assistants[m] + " done]. "
+                if finish_na:
+                    finish_na = False
+                    print("taposed")
+                    remarks = remarks + assistants_done[m].name + "[done]. "
             assistants_done, donetasks_assistants = [], []
     else:
         print("none")
